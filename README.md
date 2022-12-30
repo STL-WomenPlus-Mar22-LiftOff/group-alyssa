@@ -8,3 +8,4 @@ User Profile - Unique authentication (username/ password)to keep our users infor
 Create/Save Trips - Create new trips & view list of planned trips to keep our users organized
 
 Google Maps API  Integration - A visual representation of our users intended journey
+
