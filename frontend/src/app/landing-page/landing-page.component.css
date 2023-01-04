@@ -1,0 +1,49 @@
+body  {
+  /* background-image: url("/assets/images/bakgroundroad.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; */
+  color: whitesmoke;
+  text-align: center;
+  background-color: rgb(27, 27, 27);
+}
+
+header  {
+  padding: 200px 0;
+  background-image: url("/assets/images/bakgroundroad.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: whitesmoke;
+  height: 800px;
+}
+
+.nav-item {
+  margin: 10px 16px;
+}
+
+.hero-section  {
+  align-items: center;
+  border: 2px solid whitesmoke;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 75px 50px 70px;
+  margin: 25px;
+  margin-left: 100px;
+  margin-right: 100px;
+  justify-content: center;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0,0,0,0.2) 0%);
+}
+
+.about-us  {
+  padding: 200px 0;
+}
+
+.reviews  {
+  padding: 200px 0;
+}
+
+footer  {
+  padding: 35px 0;
+  color: whitesmoke;
+}
