@@ -5,6 +5,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +25,10 @@ public class User extends AbstractEntity implements Serializable {
 
     @NotBlank(message = "Passwords do not match")
     private String verifyPassword;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Trip> trips = new ArrayList<>();
 
 
     public User(){}
@@ -65,6 +71,10 @@ public class User extends AbstractEntity implements Serializable {
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
     }
+
+    public List<Trip> getTrips(){return trips;}
+
+    public void setTrips(List<Trip> trips){this.trips = trips;}
 
 
 }
