@@ -8,11 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class User implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
-    private Long id;
+public class User extends AbstractEntity implements Serializable {
 
     @NotBlank(message = "user name required")
     @Size(min = 5, max = 15, message = "user name must be between 5 and 15 characters")
@@ -29,12 +25,10 @@ public class User implements Serializable {
     private String verifyPassword;
 
 
-    public User(){
-        this.id = id;
-    }
+    public User(){}
 
     public User(String username, String email, String password){
-        this();
+        super();
         this.username = username;
         this.email = email;
         this.password = password;
@@ -72,20 +66,5 @@ public class User implements Serializable {
         this.verifyPassword = verifyPassword;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id.equals(user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
