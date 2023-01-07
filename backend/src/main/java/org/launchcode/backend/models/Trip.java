@@ -1,17 +1,12 @@
 package org.launchcode.backend.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Trip {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tripId;
+public class Trip extends AbstractEntity implements Serializable {
 
     @NotBlank(message = "trip name required")
     private String tripName;
@@ -22,22 +17,19 @@ public class Trip {
     @NotBlank(message = "ending location coordinate required")
     private String endingLocation;
 
-    public Trip(){this.tripId = tripId;}
+    @ManyToOne
+    private User user;
 
-    public Trip(Long tripId, String tripName, String startingLocation, String endingLocation) {
-        this.tripId = tripId;
+    public Trip(){}
+
+    public Trip(User user, String tripName, String startingLocation, String endingLocation) {
+        super();
+        this.user = user;
         this.tripName = tripName;
         this.startingLocation = startingLocation;
         this.endingLocation = endingLocation;
     }
 
-    public Long getTripId() {
-        return tripId;
-    }
-
-    public void setTripId(Long tripId) {
-        this.tripId = tripId;
-    }
 
     public String getTripName() {
         return tripName;
@@ -63,16 +55,8 @@ public class Trip {
         this.endingLocation = endingLocation;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Trip trip = (Trip) o;
-        return tripId.equals(trip.tripId);
-    }
+    public User getUser(){return user;}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(tripId);
-    }
+    public void setUser(User user){this.user = user;}
+
 }
