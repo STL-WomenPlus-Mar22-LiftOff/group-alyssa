@@ -1,6 +1,5 @@
 package org.launchcode.backend;
 
-
 import org.launchcode.backend.models.User;
 import org.launchcode.backend.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/user")
 public class UserResource {
 
