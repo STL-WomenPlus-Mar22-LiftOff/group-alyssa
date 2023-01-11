@@ -1,0 +1,23 @@
+<div class = "container">
+  <div class = "userList">
+    <h3 class="text-center">User List</h3>
+    <div class="userList-body">
+      <table class="table table-striped">
+        <thead>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Password</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td> {{user.id}} </td>
+            <td> {{user.username}} </td>
+            <td> {{user.email}} </td>
+            <td> {{user.password}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
