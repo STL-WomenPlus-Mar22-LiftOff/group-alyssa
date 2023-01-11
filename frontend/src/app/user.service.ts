@@ -22,8 +22,8 @@ export class UserService {
    }
 
    //add user; returns only that User object, instead of an array
-   public addUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/add`, user);
+   public addUser(user: User) {
+    return this.http.post<User>(this.baseUrl, user);
    }
 
    public updateUser(user: User): Observable<User> {
