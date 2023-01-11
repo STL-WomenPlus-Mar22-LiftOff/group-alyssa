@@ -1,1 +1,102 @@
-<p>create-trip works!</p>
+<p>create-trip works!</p><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Travel Buddy Maps</title>
+  <style>
+        #map{
+        height:400px;
+        width:100%;
+        }
+    </style>
+</head>
+<body>
+<h1>Travel Buddy Maps</h1>
+<div id="map"></div>
+
+  <script>
+          function initMap(){
+              //Map options
+              let options = {
+              zoom:6,
+              center: {lat:38.6270,lng:-90.1994}
+              }
+              //New map
+              let map = new google.maps.Map(document.getElementById('map'), options);
+              //Listen for click on map
+              google.maps.event.addListener(map, 'click',
+              function(event){
+              //Add Marker
+                  addMarker({coords:event.latLng});
+              });
+   /*
+              //Add Marker
+              let marker = new google.maps.Marker({
+                  position:{lat:39.0997, lng:-94.5786},
+                  map: map,
+                  icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+               });
+             let infoWindow = new google.maps.InfoWindow({
+              content: '<h1>Kansas City, MO</h1>'
+             });
+
+             marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+             });
+  */
+
+          //Array of Markers
+          let markers = [
+              {
+              coords:{lat:39.0997, lng:-94.5786},
+              iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+              content: '<h1>KC, MO</h1>'
+          },
+          {
+              coords:{lat:37.2090, lng:-93.2923},
+              content:'<h1>Springfield, MO</h1>'
+          },
+          {coords:{lat:38.5951, lng:-90.5462}}
+
+
+          ];
+
+          //Loop through Markers
+          for(let i = 0; i < markers.length; i++){
+          //Add marker
+              addMarker(markers[i]);
+          }
+
+
+
+          //Add Marker Function
+          function addMarker(props){
+              let marker = new google.maps.Marker({
+                  position: props.coords,
+                  map: map,
+                //  icon:props.iconImage
+
+               });
+               //check for custom icon
+               if(props.iconImage){
+               //Set icon image
+                  marker.setIcon(props.iconImage);
+               }
+               //check content
+               if(props.content){
+                let infoWindow = new google.maps.InfoWindow({
+                  content: props.content
+             });
+               }
+          }
+      }
+      </script>
+  <script async defer src="https://maps.googleapis.com/map/api/js?key=AIzaSyCuprnLcL9nqT1fBkjNPDPbAxqZB6Or0yA&callback=initMap">
+
+  </script>
+
+</body>
+
+</html>
