@@ -1,17 +1,10 @@
 package org.launchcode.backend.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
 
 @Entity
-public class Trip {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tripId;
+public class Trip extends AbstractEntity {
 
     @NotBlank(message = "trip name required")
     private String tripName;
@@ -22,22 +15,16 @@ public class Trip {
     @NotBlank(message = "ending location coordinate required")
     private String endingLocation;
 
-    public Trip(){this.tripId = tripId;}
+    public Trip() {
+    }
 
-    public Trip(Long tripId, String tripName, String startingLocation, String endingLocation) {
-        this.tripId = tripId;
+    public Trip(String tripName, String startingLocation, String endingLocation) {
+
         this.tripName = tripName;
         this.startingLocation = startingLocation;
         this.endingLocation = endingLocation;
     }
 
-    public Long getTripId() {
-        return tripId;
-    }
-
-    public void setTripId(Long tripId) {
-        this.tripId = tripId;
-    }
 
     public String getTripName() {
         return tripName;
@@ -63,16 +50,4 @@ public class Trip {
         this.endingLocation = endingLocation;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Trip trip = (Trip) o;
-        return tripId.equals(trip.tripId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tripId);
-    }
 }
