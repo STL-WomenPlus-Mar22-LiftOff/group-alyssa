@@ -17,7 +17,7 @@ export class UserService {
    //below should ALL mirror what is on the UserResource.java file (on the backend) as what each does, and the url it returns and .get, .post, etc.
 
    //returns all users at http://localhost:8080/user/all
-   public getUsers(): Observable<User[]>{
+   public getAllUsers(): Observable<User[]>{
     return this.http.get<User[]>(`${this.baseUrl}`);
    }
 
