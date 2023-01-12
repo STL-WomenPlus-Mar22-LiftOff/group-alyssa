@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Entity
 public class Trip extends AbstractEntity implements Serializable {
 
+
     @NotBlank(message = "trip name required")
     private String tripName;
 
