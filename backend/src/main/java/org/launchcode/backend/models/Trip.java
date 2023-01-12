@@ -17,7 +17,7 @@ public class Trip extends AbstractEntity implements Serializable {
 
     @NotBlank(message = "ending location coordinate required")
     private String endingLocation;
-
+    
     @ManyToOne
     private User user;
 
@@ -59,7 +59,7 @@ public class Trip extends AbstractEntity implements Serializable {
     public User getUser(){return user;}
 
     public void setUser(User user){this.user = user;}
-
-
+    
+    
 
 }
