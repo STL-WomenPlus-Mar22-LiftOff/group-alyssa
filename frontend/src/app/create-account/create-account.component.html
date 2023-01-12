@@ -27,25 +27,30 @@
         <div  class="hero-section">
         <div class="row align-items-center justify-content-around">
           <div class="col-12 col-lg-12">
-            <form>
+            <form (ngSubmit)="onSubmit(user.password, user.verifyPassword)">
               <fieldset>
                 <legend>Create Account</legend>
                 <div class="form-group">
-                  <label for="exampleInputEmail1" class="form-label mt-4">Username/Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <label for="exampleInputUsername1" class="form-label mt-4">Username</label>
+                  <input type="text" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username" [(ngModel)]="user.username" id="username" name="username">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="form-label mt-4">Email</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="user.email" id="email" name="email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                  <input type="password" class="form-control" placeholder="Password" id="password">
+                  <input type="password" class="form-control" placeholder="Password" id="password" [(ngModel)]="user.password" name="password">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1" class="form-label mt-4">Verify Password</label>
-                  <input type="password" class="form-control" placeholder="Confirm Password" id="password" id="confirm_pasword">
+                  <input type="password" class="form-control" placeholder="Verify Password" id="verifyPassword" [(ngModel)]="user.verifyPassword" name="verifyPassword">
                 </div>
-                <div>
-                <button type="submit" class="btn btn-light" href="dashboard">Submit</button>
-                <button type="submit" class="btn btn-light" href="#">Cancel</button>
-              </div>
+                <div [hidden]="user.password===user.verifyPassword" class="alert alert-danger">Passwords must match!</div>
+                  <div>
+                  <button type="submit" class="btn btn-light" id="submit" href="dashboard">Submit</button>
+                  <button type="submit" class="btn btn-light" href="#">Cancel</button>
+                  </div>
               </fieldset>
             </form>
           </div>
