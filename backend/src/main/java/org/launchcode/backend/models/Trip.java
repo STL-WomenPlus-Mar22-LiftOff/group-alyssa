@@ -1,9 +1,9 @@
 package org.launchcode.backend.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 public class Trip extends AbstractEntity implements Serializable {
@@ -58,5 +58,7 @@ public class Trip extends AbstractEntity implements Serializable {
     public User getUser(){return user;}
 
     public void setUser(User user){this.user = user;}
+
+
 
 }
