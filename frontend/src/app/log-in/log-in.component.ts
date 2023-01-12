@@ -28,6 +28,7 @@ export class LogInComponent implements OnInit {
       this.router.navigate([`/dashboard`]);
     } else  {
       console.log("failure");
+      alert("Username or password incorrect!");
     }
   }
 
@@ -39,4 +40,5 @@ export class LogInComponent implements OnInit {
       console.log("Authentication Error");
     })
   }
+
 }
