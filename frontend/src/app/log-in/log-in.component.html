@@ -31,15 +31,15 @@
               <fieldset>
                 <legend>Log In</legend>
                 <div class="form-group">
-                  <label for="exampleInputEmail1" class="form-label mt-4">Username/Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <label for="exampleInputUsername1" class="form-label mt-4">Username</label>
+                  <input type="text" #username="ngModel" [(ngModel)]="user.username" name="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                  <input type="password" class="form-control" placeholder="Password" id="password">
+                  <input type="password" #username="ngModel" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" id="password">
                 </div>
                 <div>
-                <button type="submit" class="btn btn-light" href="dashboard">Submit</button>
+                  <button type="submit" class="btn btn-light" id="submit" (click)="checkLogin()">Submit</button>
                 <button type="submit" class="btn btn-light" href="#">Cancel</button>
               </div>
               </fieldset>

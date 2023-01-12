@@ -21,6 +21,11 @@ export class UserService {
     return this.http.get<User[]>(`${this.baseUrl}`);
    }
 
+   //get one single user
+   public getUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl);
+   }
+
    //add user; returns only that User object, instead of an array
    public addUser(user: User) {
     return this.http.post<User>(this.baseUrl, user);

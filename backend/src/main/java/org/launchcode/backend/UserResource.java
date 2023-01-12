@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -58,6 +60,27 @@ public class UserResource {
         userService.deleteUser(id);
         //only returned Http b/c user was deleted so there isn't anything to show
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //find user by email - used for authentication/login feature
+    @PostMapping("authentication")
+    public HashMap<String, String> authenticate (@RequestBody User user)    {
+        //custom query method created, will be added to UserRepository
+        Optional<User> userData = userRepository.findUserByUsername(user.getUsername());
+
+        HashMap<String, String> map = new HashMap<>();
+
+        if (userData.isPresent())   {
+            User userInfo = userData.get();
+            if (user.getPassword().equals(userInfo.getPassword()))  {
+                map.put("status", "success");
+            }   else {
+                map.put("status", "failure");
+            }
+        }   else {
+            map.put("status", "failure");
+        }
+        return map;
     }
 
 
