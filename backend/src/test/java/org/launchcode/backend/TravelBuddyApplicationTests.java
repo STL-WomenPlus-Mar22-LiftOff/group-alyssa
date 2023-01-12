@@ -10,4 +10,5 @@ class TravelBuddyApplicationTests {
 	void contextLoads() {
 	}
 
+
 }

@@ -1,5 +1,12 @@
 package org.launchcode.backend.models;
 
+
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+public class Trip extends AbstractEntity {
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -7,6 +14,7 @@ import java.util.Objects;
 
 @Entity
 public class Trip extends AbstractEntity implements Serializable {
+
 
     @NotBlank(message = "trip name required")
     private String tripName;
@@ -17,6 +25,13 @@ public class Trip extends AbstractEntity implements Serializable {
     @NotBlank(message = "ending location coordinate required")
     private String endingLocation;
 
+
+    public Trip() {
+    }
+
+    public Trip(String tripName, String startingLocation, String endingLocation) {
+
+
     @ManyToOne
     private User user;
 
@@ -25,6 +40,7 @@ public class Trip extends AbstractEntity implements Serializable {
     public Trip(User user, String tripName, String startingLocation, String endingLocation) {
         super();
         this.user = user;
+
         this.tripName = tripName;
         this.startingLocation = startingLocation;
         this.endingLocation = endingLocation;
@@ -55,8 +71,12 @@ public class Trip extends AbstractEntity implements Serializable {
         this.endingLocation = endingLocation;
     }
 
+
+}
+
     public User getUser(){return user;}
 
     public void setUser(User user){this.user = user;}
 
 }
+

@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TripRepository extends CrudRepository<Trip, Integer> {
+    void deleteTripById(Long id);
+    Trip findById(Long id);
+
+
 }
