@@ -1,5 +1,7 @@
 package org.launchcode.backend.models;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -24,22 +26,20 @@ public class User extends AbstractEntity implements Serializable {
     @Size(min = 6)
     private String password;
 
-    @NotBlank(message = "Passwords do not match")
-    private String verifyPassword;
-
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Trip> trips = new ArrayList<>();
 
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 
     public User(){}
 
-    public User(String username, String email, String password, String verifyPassword){
+    public User(String username, String email, String password){
         super();
         this.username = username;
         this.email = email;
-        this.password = password;
-        this.verifyPassword = verifyPassword;
+        this.password = encoder.encode(password);
     }
 
     public String getUsername() {
@@ -63,16 +63,10 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encoder.encode(password);
     }
 
-    public String getVerifyPassword() {
-        return verifyPassword;
-    }
-
-    public void setVerifyPassword(String verifyPassword) {
-        this.verifyPassword = verifyPassword;
-    }
+    public boolean isMatchingPassword(String password){ return encoder.matches(password, this.password);}
 
     public List<Trip> getTrips(){return trips;}
 
