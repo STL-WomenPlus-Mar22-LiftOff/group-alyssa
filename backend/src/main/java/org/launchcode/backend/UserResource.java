@@ -35,7 +35,7 @@ public class UserResource {
 
     @PostMapping("")
     void addUser(@RequestBody User user)    {
-        User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getVerifyPassword());
+        User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword());
         userRepository.save(newUser);
     }
 
@@ -76,9 +76,11 @@ public class UserResource {
                 map.put("status", "success");
             }   else {
                 map.put("status", "failure");
+                map.put("user", user.getPassword());
+                map.put("userInfo", userInfo.getPassword());
             }
         }   else {
-            map.put("status", "failure");
+            map.put("status", "failure2");
         }
         return map;
     }
