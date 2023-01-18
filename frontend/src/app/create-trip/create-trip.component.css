@@ -1,0 +1,55 @@
+#map{
+    height:700px;
+    width: 100%;
+}
+/*body {
+  color: black;
+  font-family: "Poppins", sans-serif;
+}*/
+body {
+  padding: 200px 0;
+  background-image: url("/assets/images/bakgroundroad.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: whitesmoke;
+  height: 800px;
+}
+body {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+.jumbotron {
+  background-color: transparent;
+  margin: 0;
+  padding: 10px;
+
+}
+
+.jumbotron h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.jumbotron h1,
+.jumbotron p {
+  text-align: center;
+
+}
+
+.jumbotron p {
+  font-size: 1em;
+}
+
+#googleMap {
+  width: 80%;
+  height: 400px;
+  margin: 20px auto;
+
+}
+#output {
+  text-align: center;
+  font-size: 2em;
+  margin: 200px;
+}
