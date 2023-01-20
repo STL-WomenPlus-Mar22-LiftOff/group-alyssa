@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Travel Buddy Maps</title>
-  <link rel="stylesheet" href="create-trip.component.css">
+  <link rel="stylesheet" type="text/css" href="create-trip.component.css">
 
 </head>
 <body>
@@ -15,7 +15,90 @@
   <div class="container-fluid">
     <h1>I can go the distance</h1>
     <p>I will go 'most anywhere to find where I belong</p>
-    <form class="form-horizontal">
+    <div id="floating-panel">
+      <strong>From:</strong>
+      <select id="from">
+        <option value="chicago, il">Chicago</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
+      <br />
+      <strong>To:</strong>
+      <select id="to">
+        <option value="chicago, il">Chicago</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
+    </div>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar"></div>
+    </div> <!---
+    <div style="display: none">
+      <div id="floating-panel">
+        <strong>Start:</strong>
+        <select id="start">
+          <option value="chicago, il">Chicago</option>
+          <option value="st louis, mo">St Louis</option>
+          <option value="joplin, mo">Joplin, MO</option>
+          <option value="oklahoma city, ok">Oklahoma City</option>
+          <option value="amarillo, tx">Amarillo</option>
+          <option value="gallup, nm">Gallup, NM</option>
+          <option value="flagstaff, az">Flagstaff, AZ</option>
+          <option value="winona, az">Winona</option>
+          <option value="kingman, az">Kingman</option>
+          <option value="barstow, ca">Barstow</option>
+          <option value="san bernardino, ca">San Bernardino</option>
+          <option value="los angeles, ca">Los Angeles</option>
+        </select>
+        <br />
+        <strong>End:</strong>
+        <select id="end">
+          <option value="chicago, il">Chicago</option>
+          <option value="st louis, mo">St Louis</option>
+          <option value="joplin, mo">Joplin, MO</option>
+          <option value="oklahoma city, ok">Oklahoma City</option>
+          <option value="amarillo, tx">Amarillo</option>
+          <option value="gallup, nm">Gallup, NM</option>
+          <option value="flagstaff, az">Flagstaff, AZ</option>
+          <option value="winona, az">Winona</option>
+          <option value="kingman, az">Kingman</option>
+          <option value="barstow, ca">Barstow</option>
+          <option value="san bernardino, ca">San Bernardino</option>
+          <option value="los angeles, ca">Los Angeles</option>
+        </select>
+      </div>  -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!---<form class="form-horizontal">
       <div class="form-group">
         <label for="from" class="label">Origin: </label>
         <div class="input">
@@ -28,19 +111,20 @@
       </div>
     </form>
 
-      <div class="button">
+    <div class="button">
         <button class="button">Take me there</button>
-      </div>
+    </div>
   </div>
   <div class="container-fluid">
     <div id="googleMap">
       <div id="output"></div>
     </div>
-  </div>
+  </div>--->
 
-</div>
-  <script async defer src="https://maps.googleapis.com/map/api/js?key=AIzaSyCuprnLcL9nqT1fBkjNPDPbAxqZB6Or0yA&callback=initMap"></script>
+  </div>
+  <script src="https://maps.googleapis.com/map/api/js?key=AIzaSyCuprnLcL9nqT1fBkjNPDPbAxqZB6Or0yA&callback=initMap"
+          defer ></script>
   <script src="/create-trip.component.js"></script>
-</body>
+  </body>
 
 </html>
