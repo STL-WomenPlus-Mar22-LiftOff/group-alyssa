@@ -16,16 +16,12 @@ public abstract class AbstractEntity {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractEntity entity = (AbstractEntity) o;
-        return id.equals(entity.id);
+        return id == entity.id;
     }
 
     @Override

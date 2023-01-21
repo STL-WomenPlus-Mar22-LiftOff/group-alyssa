@@ -18,12 +18,12 @@ export class UserService {
 
    //returns all users at http://localhost:8080/user/all
    public getAllUsers(): Observable<User[]>{
-    return this.http.get<User[]>(`${this.baseUrl}`);
+    return this.http.get<User[]>(this.baseUrl);
    }
 
    //get one single user
    public getUser(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl);
+    return this.http.get<User[]>(`${this.baseUrl}`);
    }
 
    //add user; returns only that User object, instead of an array
@@ -38,6 +38,18 @@ export class UserService {
    //delete user by id; void as it's returning nothing
    public deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/delete/${userId}`);
+   }
+
+   public checkUsername(username: String) {
+    return this.http.get<boolean>(`${this.baseUrl}/confirm/${username}`);
+   }
+
+   public checkEmail(email: String) {
+    return this.http.get<boolean>(`${this.baseUrl}/confirm/${email}`);
+   }
+
+   public getUserInfo(username: String) {
+      return this.http.get<any>(`${this.baseUrl}/${username}`);
    }
 
 
