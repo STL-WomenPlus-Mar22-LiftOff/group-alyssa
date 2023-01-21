@@ -9,7 +9,7 @@ export class CreateTripComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit():void {
   }
 
 }
