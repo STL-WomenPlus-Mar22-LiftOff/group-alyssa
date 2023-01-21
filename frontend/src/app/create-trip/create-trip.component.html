@@ -24,6 +24,59 @@
     </div>
   </nav>
   <section>
+    <div class="white-space"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1>Create Trip</h1>
+        </div>
+      </div>
+    </div>
+    <header>
+      <div class="container">
+        <div  class="hero-section">
+        <div class="row align-items-center justify-content-around">
+          <div class="col-12 col-lg-12">
+            <small class="alert-danger" *ngIf="">Username or password was incorrect! Please try again.</small>
+            <form #createTripForm="ngForm">
+              <fieldset>
+                <div class="form-group">
+                  <label class="form-label mt-4">Starting Location: </label>
+                  <input type="text" class="form-control" placeholder="Ex.: St. Louis">
+                      <div>
+                        <small class="text-danger">
+                          <!-- Starting location is required! -->
+                        </small>
+                      </div>
+                </div>
 
+                <div class="form-group">
+                  <label class="form-label mt-4">Ending Location: </label>
+                  <input type="text"
+                          class="form-control" placeholder="Ex.: Chicago">
+                      <div>
+                        <small class="text-danger">
+                          <!-- Ending location is required! -->
+                        </small>
+                      </div>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-outline-dark" >Create</button>
+                  <button type="submit" class="btn btn-outline-dark" href="dashboard">Cancel</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </header>
+    <div class="white-space"></div>
+    <div>
+      <footer class="text-center">
+        <small>Made by Big Beautiful Brains&trade;</small>
+      </footer>
+    </div>
   </section>
   </body>
