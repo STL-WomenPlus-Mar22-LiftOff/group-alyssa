@@ -16,4 +16,16 @@ export class AuthenticationService {
     return this.httpClient.post(this.baseUrl, user);
   }
 
+  isUserLoggedIn()  {
+    let user = sessionStorage.getItem('username');
+    return !(user === null);
+  }
+
+  logOut()  {
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('id');
+    return console.log("User successfully logged out.");
+  }
+
 }

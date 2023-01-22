@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +28,22 @@ public class UserResource {
     }
 
     //method to return all users in application
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    @GetMapping("")
+    public Iterable<User> getAllUsers(){
         List<User> users = userService.findAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return userRepository.findAll();
+//        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("")
-    void addUser(@RequestBody User user)    {
-        User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword());
+//    @GetMapping("search/id")
+//    public Optional <User> getUser(@RequestBody User user)  {
+//        Optional <User> id = userRepository.findUserById(user.getId());
+//        return id;
+//    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public void addUser(@RequestBody User user)    {
+        User newUser = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getVerifyPassword());
         userRepository.save(newUser);
     }
 
@@ -46,15 +54,15 @@ public class UserResource {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    //add user
-    //Post b/c we are changing things on backend
+    //update user
+    //Put b/c we are UPDATING, not adding
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user){
         User updateUser = userService.updateUser(user);
         return new ResponseEntity<>(updateUser, HttpStatus.OK);
     }
 
-    //delete employee
+    //delete user
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") Long id){
         userService.deleteUser(id);
@@ -66,7 +74,7 @@ public class UserResource {
     @PostMapping("authentication")
     public HashMap<String, String> authenticate (@RequestBody User user)    {
         //custom query method created, will be added to UserRepository
-        Optional<User> userData = userRepository.findUserByUsername(user.getUsername());
+        Optional<User> userData = userRepository.findByUsername(user.getUsername());
 
         HashMap<String, String> map = new HashMap<>();
 
@@ -76,13 +84,34 @@ public class UserResource {
                 map.put("status", "success");
             }   else {
                 map.put("status", "failure");
-                map.put("user", user.getPassword());
-                map.put("userInfo", userInfo.getPassword());
+//                map.put("user", user.getPassword());
+//                map.put("userInfo", userInfo.getPassword());
             }
         }   else {
-            map.put("status", "failure2");
+            map.put("status", "failure");
         }
         return map;
+    }
+
+    //check if username and/or email already exist in the database
+    @GetMapping("/confirm/{username}")
+    public boolean checkUsername(@PathVariable("username") String username) {
+        Iterable<User> allUsers = getAllUsers();
+        for (User user : allUsers)  {
+            if (username.equalsIgnoreCase(user.getUsername()))  {
+                return false;
+            }
+        }   return true;
+    }
+
+    @GetMapping("/confirm/{email}")
+    public boolean checkEmail(@PathVariable("email") String email) {
+        Iterable<User> allUsers = getAllUsers();
+        for (User user : allUsers)  {
+            if (email.equalsIgnoreCase(user.getEmail()))  {
+                return false;
+            }
+        }   return true;
     }
 
 

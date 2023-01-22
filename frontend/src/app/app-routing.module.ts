@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { UserComponent } from './user/user.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'login', component: LogInComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'user', component: UserComponent}
+  { path: 'user', component: UserComponent},
+  { path: 'logout', component: LogoutComponent},
 
 ];
 

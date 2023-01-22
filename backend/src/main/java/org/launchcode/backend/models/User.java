@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,33 +14,41 @@ import java.util.Objects;
 
 
 @Entity
-public class User extends AbstractEntity implements Serializable {
+public class User extends AbstractEntity {
 
-    @NotBlank(message = "user name required")
-    @Size(min = 5, max = 15, message = "user name must be between 5 and 15 characters")
+//    @NotBlank(message = "user name required")
+//    @Size(min = 5, max = 15, message = "user name must be between 5 and 15 characters")
+    @NotNull
     private String username;
 
-    @Email(message = "Invalid Email try again")
+//    @Email(message = "Invalid Email try again")
+    @NotNull
     private String email;
 
-    @NotBlank(message = "password required")
-    @Size(min = 6)
+//    @NotBlank(message = "password required")
+//    @Size(min = 6)
+    @NotNull
     private String password;
+
+    @NotNull
+    private String verifyPassword;
 
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Trip> trips = new ArrayList<>();
 
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
     public User(){}
 
-    public User(String username, String email, String password){
+    public User(String username, String email, String password, String verifyPassword){
         super();
         this.username = username;
         this.email = email;
-        this.password = encoder.encode(password);
+//        this.password = encoder.encode(password);
+        this.password = password;
+        this.verifyPassword = verifyPassword;
     }
 
     public String getUsername() {
@@ -63,10 +72,19 @@ public class User extends AbstractEntity implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = encoder.encode(password);
+//        this.password = encoder.encode(password);
+        this.password = password;
     }
 
-    public boolean isMatchingPassword(String password){ return encoder.matches(password, this.password);}
+    public String getVerifyPassword()   {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword()   {
+        this.verifyPassword = verifyPassword;
+    }
+
+//    public boolean isMatchingPassword(String password){ return encoder.matches(password, this.password);}
 
     public List<Trip> getTrips(){return trips;}
 

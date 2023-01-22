@@ -12,6 +12,7 @@ import { ViewIndividualTripComponent } from './view-individual-trip/view-individ
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './user/user.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserComponent } from './user/user.component';
     CreateTripComponent,
     ViewAllTripsComponent,
     ViewIndividualTripComponent,
-    UserComponent
+    UserComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
