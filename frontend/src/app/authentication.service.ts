@@ -23,8 +23,8 @@ export class AuthenticationService {
 
   logOut()  {
     sessionStorage.removeItem('username');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('id');
+    // sessionStorage.removeItem('email');
+    // sessionStorage.removeItem('id');
     return console.log("User successfully logged out.");
   }
 
