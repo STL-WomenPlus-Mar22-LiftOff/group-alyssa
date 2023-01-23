@@ -3,7 +3,7 @@
   display: flex;
 }
 
-#sidebar {
+/* #sidebar {
   flex-basis: 15rem;
   flex-grow: 1;
   padding: 1rem;
@@ -17,7 +17,7 @@
   flex-basis: 0;
   flex-grow: 4;
   height: 100%;
-}
+} */
 
 /* #floating-panel {
   position: absolute;
@@ -49,9 +49,9 @@
   height: auto;
 } */
 
-#map {
+/* #map {
   height: 100%;
-}
+} */
 
 .hero-section  {
   align-items: center;

@@ -16,10 +16,10 @@ export class CreateTripComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
+  // map = new google.maps.Map(document.getElementById('map'), {
+  //   center: {lat: -34.397, lng: 150.644},
+  //   zoom: 8
+  // });
 //   ngOnInit(): void {
 //     const mapProperties = {
 //          center: new google.maps.LatLng(35.2271, -80.8431),
