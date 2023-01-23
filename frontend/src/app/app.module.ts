@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './user/user.component';
 import { LogoutComponent } from './logout/logout.component';
+import { TripComponent } from './trip/trip.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LogoutComponent } from './logout/logout.component';
     ViewAllTripsComponent,
     ViewIndividualTripComponent,
     UserComponent,
-    LogoutComponent
+    LogoutComponent,
+    TripComponent
   ],
   imports: [
     BrowserModule,

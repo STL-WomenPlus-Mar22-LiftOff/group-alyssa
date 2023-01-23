@@ -37,28 +37,52 @@
         <div  class="hero-section">
         <div class="row align-items-center justify-content-around">
           <div class="col-12 col-lg-12">
-            <small class="alert-danger" *ngIf="">Username or password was incorrect! Please try again.</small>
-            <form #createTripForm="ngForm">
+            <small class="alert-danger" *ngIf="">Starting Location and Ending Location are required! Please try again.</small>
+            <form #createTripForm="ngForm" (ngSubmit)="onSubmit(trip)">
               <fieldset>
                 <div class="form-group">
-                  <label class="form-label mt-4">Starting Location: </label>
-                  <input type="text" class="form-control" placeholder="Ex.: St. Louis">
-                      <div>
-                        <small class="text-danger">
-                          <!-- Starting location is required! -->
+                  <label class="form-label mt-4">Trip Name: </label>
+                  <input type="text" class="form-control"
+                        placeholder="Ex.: Chicago 2023" #tripName = "ngModel"
+                        [(ngModel)]="trip.tripName" name="tripName"
+                        required [pattern]="tripNamePattern">
+                      <!-- <div>
+                        <small class="text-danger" *ngIf="tripName.errors.pattern.required">
+                          Trip Name is required!
                         </small>
-                      </div>
+                      </div> -->
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label mt-4">Starting Location: </label>
+                  <input type="text" class="form-control"
+                        placeholder="Ex.: St. Louis" #startingLocation = "ngModel"
+                        [(ngModel)]="trip.startingLocation" name="startingLocation"
+                        required [pattern]="startingLocationPattern">
+                      <!-- <div *ngIf="startingLocation.errors">
+                        <small class="text-danger" *ngIf="startingLocation.errors.required">
+                          Starting location is required!
+                        </small>
+                        <small class="alert-danger" *ngIf="startingLocation.errors.pattern">
+                          Starting location must only contain letters and numbers!
+                        </small>
+                    </div> -->
                 </div>
 
                 <div class="form-group">
                   <label class="form-label mt-4">Ending Location: </label>
-                  <input type="text"
-                          class="form-control" placeholder="Ex.: Chicago">
-                      <div>
-                        <small class="text-danger">
-                          <!-- Ending location is required! -->
+                  <input type="text" class="form-control"
+                      placeholder="Ex.: Chicago" #endingLocation = "ngModel"
+                      [(ngModel)]="trip.endingLocation" name="endingLocation"
+                      required [pattern]="endingLocationPattern">
+                      <!-- <div>
+                        <small class="text-danger" *ngIf="endingLocation.errors.required">
+                          Ending location is required!
                         </small>
-                      </div>
+                        <small class="alert-danger" *ngIf="endingLocation.errors.pattern">
+                          Ending location must only contain letters and numbers!
+                        </small>
+                      </div> -->
                 </div>
 
                 <div class="form-group">

@@ -1,7 +1,11 @@
-/// <reference types="@types/google.maps" />
+// / <reference types="@types/google.maps" />
 
 
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Trip } from '../trip';
+import { TripService } from '../trip.service';
+import { TripComponent } from '../trip/trip.component';
 // import {} from 'google.maps';
 
 @Component({
@@ -11,9 +15,25 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class CreateTripComponent implements OnInit {
 
-  constructor() { }
+  trip: Trip;
+
+  tripNamePattern = "^[a-zA-Z0-9]*$";
+  startingLocationPattern = "/^[A-Za-z]+$/";
+  endingLocationPattern = "/^[A-Za-z]+$/";
+
+  constructor(private tripService: TripService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.trip = new Trip;
+  }
 
   ngOnInit(): void {
+  }
+
+  goToViewTrip()  {
+    this.router.navigate([`/view-individual-trip`]);
+  }
+
+  onSubmit(trip: Trip)  {
+    this.tripService.addTrip(this.trip).subscribe((result) => this.goToViewTrip());
   }
 
   // map = new google.maps.Map(document.getElementById('map'), {
