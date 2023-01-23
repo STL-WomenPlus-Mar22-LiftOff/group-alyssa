@@ -90,5 +90,4 @@ public class User extends AbstractEntity {
 
     public void setTrips(List<Trip> trips){this.trips = trips;}
 
-
 }

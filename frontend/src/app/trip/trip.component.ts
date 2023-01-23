@@ -14,6 +14,10 @@ export class TripComponent implements OnInit {
   constructor(private tripService: TripService) { }
 
   ngOnInit(): void {
+    this.tripService.getAllTrips().subscribe((data: Trip[]) => {
+      console.log(data);
+      this.trips = data;
+    });
 
   }
 

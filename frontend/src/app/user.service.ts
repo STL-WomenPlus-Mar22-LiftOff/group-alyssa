@@ -52,5 +52,9 @@ export class UserService {
       return this.http.get<any>(`${this.baseUrl}/${username}`);
    }
 
+   public getUserId(username: String) {
+    return this.http.get<number>(`${this.baseUrl}/${username}/id`);
+   }
+
 
 }

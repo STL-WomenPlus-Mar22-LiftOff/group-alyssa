@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Trip } from './trip';
 
 @Injectable({
@@ -17,5 +18,12 @@ export class TripService {
     return this.http.post<Trip>(this.baseUrl, trip);
    }
 
+   public getTrip(): Observable<Trip[]>{
+    return this.http.get<Trip[]>(`${this.baseUrl}`);
+   }
+
+   public getAllTrips(): Observable<Trip[]>{
+    return this.http.get<Trip[]>(this.baseUrl);
+   }
 
 }

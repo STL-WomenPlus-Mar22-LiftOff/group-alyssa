@@ -1,1 +1,25 @@
-<p>trip works!</p>
+<div class = "container">
+  <div class = "tripList">
+    <h3 class="text-center">Trip List</h3>
+    <div class="tripList-body">
+      <table class="table table-striped">
+        <thead>
+          <th>ID</th>
+          <th>Trip Name</th>
+          <th>Starting Location</th>
+          <th>Ending Location</th>
+          <th>User ID</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let trip of trips">
+            <td> {{trip.id}} </td>
+            <td> {{trip.tripName}} </td>
+            <td> {{trip.startingLocation}} </td>
+            <td> {{trip.endingLocation}} </td>
+            <td> {{trip.userId}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

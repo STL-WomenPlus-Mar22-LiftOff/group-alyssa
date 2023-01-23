@@ -26,6 +26,12 @@ export class CreateTripComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserSessionId();
+    this.trip.userId = this.getUserSessionId();
+  }
+
+  getUserSessionId()  {
+    return sessionStorage.getItem("id");
   }
 
   goToViewTrip()  {

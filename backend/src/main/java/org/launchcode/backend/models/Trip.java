@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-public class Trip extends AbstractEntity implements Serializable {
+public class Trip extends AbstractEntity {
 
     @NotNull
 //    @NotBlank(message = "trip name required")

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/trip")
@@ -22,9 +24,10 @@ public class TripResource {
 
     //method to return all trips in application
     @GetMapping("")
-    public ResponseEntity<Iterable<Trip>> getAllTrips(){
-        Iterable<Trip> trip = tripService.findAllTrips();
-        return new ResponseEntity<>(trip, HttpStatus.OK);
+    public Iterable<Trip> getAllTrips(){
+        List <Trip> trips = tripService.findAllTrips();
+        return tripRepository.findAll();
+//        return new ResponseEntity<>(trips, HttpStatus.OK);
     }
 
     //add a trip
@@ -37,7 +40,7 @@ public class TripResource {
     // find a trip
     @GetMapping("/find/{id}")
     public ResponseEntity<Trip> getTripById(@PathVariable("id") Long id){
-       Trip trip = tripService.findById(id);
+       Trip trip = tripService.findTripById(id);
         return new ResponseEntity<>(trip, HttpStatus.OK);
     }
 
