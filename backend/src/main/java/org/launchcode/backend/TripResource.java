@@ -25,7 +25,7 @@ public class TripResource {
     //method to return all trips in application
     @GetMapping("")
     public Iterable<Trip> getAllTrips(){
-        List <Trip> trips = tripService.findAllTrips();
+        Iterable <Trip> trips = tripService.findAllTrips();
         return tripRepository.findAll();
 //        return new ResponseEntity<>(trips, HttpStatus.OK);
     }
@@ -33,7 +33,7 @@ public class TripResource {
     //add a trip
     @RequestMapping(value = "", method = RequestMethod.POST)
     public void addTrip(@RequestBody Trip trip)    {
-        Trip newTrip = new Trip(trip.getTripName(), trip.getStartingLocation(), trip.getEndingLocation());
+        Trip newTrip = new Trip(trip.getTripName(), trip.getStartingLocation(), trip.getEndingLocation(), trip.getUserId());
         tripRepository.save(newTrip);
     }
 

@@ -30,7 +30,7 @@ public class UserResource {
     //method to return all users in application
     @GetMapping("")
     public Iterable<User> getAllUsers(){
-        List<User> users = userService.findAllUsers();
+        Iterable<User> users = userService.findAllUsers();
         return userRepository.findAll();
 //        return new ResponseEntity<>(users, HttpStatus.OK);
     }
@@ -73,7 +73,7 @@ public class UserResource {
 
     //find user by email - used for authentication/login feature
     @PostMapping("authentication")
-    public HashMap<String, String> authenticate (@RequestBody User user)    {
+    public HashMap<String, String> authentication (@RequestBody User user)    {
         //custom query method created, will be added to UserRepository
         Optional<User> userData = userRepository.findByUsername(user.getUsername());
 

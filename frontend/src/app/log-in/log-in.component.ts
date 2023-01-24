@@ -50,7 +50,7 @@ export class LogInComponent implements OnInit {
   }
 
   checkLogin()  {
-    this.authenticationService.authenticate(this.user).subscribe((result)  =>  {
+    this.authenticationService.authentication(this.user).subscribe((result)  =>  {
       this.loginStatus(result);
     },
     error =>  {

@@ -8,7 +8,7 @@ public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
+    @Column(insertable = false, updatable = false)
     private Long id;
 
 

@@ -12,7 +12,7 @@ export class AuthenticationService {
     this.baseUrl = "http://localhost:8080/user/authentication";
   }
 
-  authenticate(user: any)  {
+  authentication(user: any)  {
     return this.httpClient.post(this.baseUrl, user);
   }
 

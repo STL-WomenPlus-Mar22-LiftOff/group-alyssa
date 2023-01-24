@@ -8,6 +8,7 @@ import org.launchcode.backend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class TripService {
         return tripRepository.save(trip);
     }
 
-    public List<Trip> findAllTrips() {
+    public Iterable<Trip> findAllTrips() {
        return tripRepository.findAll();
     }
 
