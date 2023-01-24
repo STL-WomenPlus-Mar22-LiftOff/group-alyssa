@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Trip } from '../trip';
+import { TripService } from '../trip.service';
 
 @Component({
   selector: 'app-view-individual-trip',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewIndividualTripComponent implements OnInit {
 
-  constructor() { }
+  trips: Trip[] = [];
 
-  ngOnInit() {
+  constructor(private tripService: TripService) { }
+
+  ngOnInit(): void {
+    this.tripService.getTrip().subscribe((data: Trip[]) => {
+      console.log(data);
+      this.trips = data;
+    });
   }
 
 }
