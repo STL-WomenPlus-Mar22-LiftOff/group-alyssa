@@ -8,7 +8,6 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { ViewAllTripsComponent } from './view-all-trips/view-all-trips.component';
-import { ViewIndividualTripComponent } from './view-individual-trip/view-individual-trip.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { UserComponent } from './user/user.component';
@@ -24,7 +23,6 @@ import { TripComponent } from './trip/trip.component';
     DashboardComponent,
     CreateTripComponent,
     ViewAllTripsComponent,
-    ViewIndividualTripComponent,
     UserComponent,
     LogoutComponent,
     TripComponent

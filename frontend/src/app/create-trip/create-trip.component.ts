@@ -38,7 +38,7 @@ export class CreateTripComponent implements OnInit {
   }
 
   goToViewTrip()  {
-    this.router.navigate([`/view-individual-trip`]);
+    this.router.navigate([`/view-all-trips`]);
   }
 
   onSubmit(trip: Trip)  {

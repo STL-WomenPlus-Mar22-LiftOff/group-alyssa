@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Trip } from '../trip';
+import { TripService } from '../trip.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-view-all-trips',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAllTripsComponent implements OnInit {
 
-  constructor() { }
+  trips: Trip[] = [];
+  user: User[];
+  trip: Trip[] = [];
 
-  ngOnInit() {
+  constructor(private tripService: TripService) { }
+
+  ngOnInit(): void {
+    this.tripService.getTrip().subscribe((data: Trip[]) => {
+      console.log(data);
+      this.trip = data;
+    });
   }
 
 }

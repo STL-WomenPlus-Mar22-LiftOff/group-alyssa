@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Trip } from '../trip';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -10,6 +11,10 @@ import { UserService } from '../user.service';
 export class UserComponent implements OnInit {
 
   users: User[] = [];
+  trip: Trip[] = [];
+  trips: Trip[] = [];
+
+
 
   constructor(private userService: UserService) { }
 
