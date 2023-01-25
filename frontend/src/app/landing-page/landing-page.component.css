@@ -43,6 +43,10 @@ p{
   color: whitesmoke;
 }
 
+.white-space  {
+  margin-top: 50px;
+}
+
 .user-reviews {
   padding: 200px 0;
   align-items: center;
