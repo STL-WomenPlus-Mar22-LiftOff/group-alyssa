@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+/* a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease; }
+  a, a:hover {
+    text-decoration: none !important; }
+
+.content {
+  padding: 7rem 0; }
+
+h2 {
+  font-size: 20px; }
+
+.media-29101 {
+  text-align: center; }
+  .media-29101 img {
+    margin-bottom: 20px;
+    border-radius: 50%;
+    width: 80px !important;
+    margin: 0 auto 40px auto; }
+  .media-29101 h3 {
+    font-size: 18px;
+    font-weight: 900 !important;
+    margin-bottom: 30px; }
+    .media-29101 h3 a {
+      color: whitesmoke; }
+
+  .owl-2-style .owl-nav {
+  display: none; }
+
+  .owl-2-style .owl-dots {
+  text-align: center;
+  position: relative;
+  bottom: -30px; }
+  .owl-2-style .owl-dots .owl-dot {
+    display: inline-block; }
+    .owl-2-style .owl-dots .owl-dot span {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 0px;
+      background: #cccccc;
+      -webkit-transition: 0.3s all cubic-bezier(0.32, 0.71, 0.53, 0.53);
+      -o-transition: 0.3s all cubic-bezier(0.32, 0.71, 0.53, 0.53);
+      transition: 0.3s all cubic-bezier(0.32, 0.71, 0.53, 0.53);
+      margin: 3px;
+      border-radius: 50%; }
+    .owl-2-style .owl-dots .owl-dot.active span {
+      background: whitesmoke; }
+    .owl-2-style .owl-dots .owl-dot:active, .owl-2-style .owl-dots .owl-dot:focus {
+      outline: none; } */

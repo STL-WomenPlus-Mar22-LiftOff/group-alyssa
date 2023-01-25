@@ -10,7 +10,7 @@ body  {
 
 header  {
   padding: 200px 0;
-  background-image: url("/assets/images/bakgroundroad.jpg");
+  background-image: url("/assets/images/backgroundroad.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -25,8 +25,8 @@ header  {
 .hero-section  {
   align-items: center;
   border: 2px solid whitesmoke;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   padding: 50px 75px 50px 70px;
   margin: 25px;
   margin-left: 100px;
@@ -39,9 +39,7 @@ header  {
   padding: 200px 0;
 }
 
-.reviews  {
-  padding: 200px 0;
-}
+
 
 footer  {
   padding: 35px 0;
