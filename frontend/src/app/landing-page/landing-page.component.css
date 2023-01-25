@@ -39,6 +39,29 @@ header  {
   padding: 200px 0;
 }
 
+p{
+  color: whitesmoke;
+}
+
+.user-reviews {
+  padding: 200px 0;
+  align-items: center;
+  display:flex;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-left: 100px;
+  margin-right: 100px;
+  justify-content: center;
+}
+
+#reviewBox  {
+  display:flex;
+  flex-wrap: wrap;
+  align-content: center;
+  margin-left: 100px;
+  margin-right: 100px;
+  justify-content: center;
+}
 
 
 footer  {
