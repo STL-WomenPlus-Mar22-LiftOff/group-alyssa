@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Trip } from '../trip';
 import { TripService } from '../trip.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-trip',
@@ -10,6 +11,7 @@ import { TripService } from '../trip.service';
 export class TripComponent implements OnInit {
 
   trips: Trip[] = [];
+  user: User;
 
   constructor(private tripService: TripService) { }
 

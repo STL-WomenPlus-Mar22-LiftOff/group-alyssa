@@ -33,9 +33,9 @@ public class User extends AbstractEntity {
     @NotNull
     private String verifyPassword;
 
-    @OneToMany(mappedBy = "user_id")
-//    @JoinColumn(name = "user_id")
-    private List<Trip> trips;
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Trip> trips = new ArrayList<>();
 
 //    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
