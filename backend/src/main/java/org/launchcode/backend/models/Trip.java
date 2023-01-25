@@ -3,19 +3,22 @@ package org.launchcode.backend.models;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
 public class Trip extends AbstractEntity implements Serializable {
 
-
-    @NotBlank(message = "trip name required")
+    @NotNull
+//    @NotBlank(message = "trip name required")
     private String tripName;
 
-    @NotBlank(message = "starting location coordinate required")
+    @NotNull
+//    @NotBlank(message = "starting location coordinate required")
     private String startingLocation;
 
-    @NotBlank(message = "ending location coordinate required")
+    @NotNull
+//    @NotBlank(message = "ending location coordinate required")
     private String endingLocation;
 
     @ManyToOne
@@ -23,9 +26,9 @@ public class Trip extends AbstractEntity implements Serializable {
 
     public Trip(){}
 
-    public Trip(User user, String tripName, String startingLocation, String endingLocation) {
+    public Trip(String tripName, String startingLocation, String endingLocation) {
         super();
-        this.user = user;
+//        this.user = user;
         this.tripName = tripName;
         this.startingLocation = startingLocation;
         this.endingLocation = endingLocation;

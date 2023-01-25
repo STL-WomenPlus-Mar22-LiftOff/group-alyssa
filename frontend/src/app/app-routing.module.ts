@@ -9,6 +9,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { UserComponent } from './user/user.component';
 import { LogoutComponent } from './logout/logout.component';
+import { CreateTripComponent } from './create-trip/create-trip.component';
+import { ViewIndividualTripComponent } from './view-individual-trip/view-individual-trip.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'user', component: UserComponent},
   { path: 'logout', component: LogoutComponent},
+  { path: 'create-trip', component: CreateTripComponent},
+  { path: 'view-individual-trip', component: ViewIndividualTripComponent}
 
 ];
 
