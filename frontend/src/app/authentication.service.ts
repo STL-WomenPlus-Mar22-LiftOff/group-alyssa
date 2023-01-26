@@ -12,7 +12,7 @@ export class AuthenticationService {
     this.baseUrl = "http://localhost:8080/user/authentication";
   }
 
-  authenticate(user: any)  {
+  authentication(user: any)  {
     return this.httpClient.post(this.baseUrl, user);
   }
 
@@ -23,8 +23,8 @@ export class AuthenticationService {
 
   logOut()  {
     sessionStorage.removeItem('username');
-    // sessionStorage.removeItem('email');
-    // sessionStorage.removeItem('id');
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('id');
     return console.log("User successfully logged out.");
   }
 

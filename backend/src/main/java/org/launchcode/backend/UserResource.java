@@ -30,16 +30,16 @@ public class UserResource {
     //method to return all users in application
     @GetMapping("")
     public Iterable<User> getAllUsers(){
-        List<User> users = userService.findAllUsers();
+        Iterable<User> users = userService.findAllUsers();
         return userRepository.findAll();
 //        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-//    @GetMapping("search/id")
-//    public Optional <User> getUser(@RequestBody User user)  {
-//        Optional <User> id = userRepository.findUserById(user.getId());
-//        return id;
-//    }
+    @GetMapping("search/id")
+    public Optional <User> getUser(@RequestParam User user)  {
+        Optional <User> userId = userRepository.findUserById(user.getId());
+        return userId;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public void addUser(@RequestBody User user)    {
@@ -47,11 +47,12 @@ public class UserResource {
         userRepository.save(newUser);
     }
 
-    //find a user
-    @GetMapping("/find/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
-        User user = userService.findUserById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+//    find a user
+    @GetMapping("{username}/id")
+    public Long getUserId(@PathVariable("username") String username)    {
+        Optional<User> userData = userRepository.findByUsername(username);
+        User foundRegisteredUser = userData.get();
+        return foundRegisteredUser.getId();
     }
 
     //update user
@@ -72,7 +73,7 @@ public class UserResource {
 
     //find user by email - used for authentication/login feature
     @PostMapping("authentication")
-    public HashMap<String, String> authenticate (@RequestBody User user)    {
+    public HashMap<String, String> authentication (@RequestBody User user)    {
         //custom query method created, will be added to UserRepository
         Optional<User> userData = userRepository.findByUsername(user.getUsername());
 
@@ -89,6 +90,21 @@ public class UserResource {
             }
         }   else {
             map.put("status", "failure");
+        }
+        return map;
+    }
+
+    @GetMapping("{username}")
+    public HashMap<String, String> getUserInfo(@PathVariable("username") String username)   {
+        Optional<User> userData = userRepository.findByUsername(username);
+
+        HashMap<String, String> map = new HashMap<>();
+
+        if (userData.isPresent())   {
+            User user = userData.get();
+            map.put("id", Long.toString(user.getId()));
+            map.put("username", user.getUsername());
+            map.put("email", user.getEmail());
         }
         return map;
     }

@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from '../trip';
 import { TripService } from '../trip.service';
 import { TripComponent } from '../trip/trip.component';
+import { User } from '../user';
+import { UserService } from '../user.service';
 // import {} from 'google.maps';
 
 @Component({
@@ -16,20 +18,27 @@ import { TripComponent } from '../trip/trip.component';
 export class CreateTripComponent implements OnInit {
 
   trip: Trip;
+  users: User[] = [];
 
   tripNamePattern = "^[a-zA-Z0-9]*$";
   startingLocationPattern = "/^[A-Za-z]+$/";
   endingLocationPattern = "/^[A-Za-z]+$/";
 
-  constructor(private tripService: TripService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private tripService: TripService, private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.trip = new Trip;
   }
 
   ngOnInit(): void {
+    this.getUserSessionId();
+    this.trip.user_id = this.getUserSessionId() || "";
+  }
+
+  getUserSessionId()  {
+    return sessionStorage.getItem("id");
   }
 
   goToViewTrip()  {
-    this.router.navigate([`/view-individual-trip`]);
+    this.router.navigate([`/view-all-trips`]);
   }
 
   onSubmit(trip: Trip)  {

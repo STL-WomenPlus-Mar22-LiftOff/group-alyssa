@@ -27,8 +27,8 @@ export class LogInComponent implements OnInit {
   loginStatus(results: any) {
     console.log("results: " + results.status);
     if (results.status === "success") {
-      sessionStorage.setItem("username", this.user.username);
-      // this.saveUserInfo();
+      // sessionStorage.setItem("username", this.user.username);
+      this.saveUserInfo();
       this.router.navigate([`/dashboard`]);
       this.isValidForm = true;
     } else  {
@@ -37,21 +37,25 @@ export class LogInComponent implements OnInit {
     }
   }
 
-  // saveUserInfo() {
-  //   this.userService.getUserInfo(this.user.username).subscribe((result) =>  {
-  //       sessionStorage.setItem("username", result.username);
-  //       // sessionStorage.setItem("email", result.email);
-  //       sessionStorage.setItem("id", result.id.toString());
-  //       this.router.navigate([`/dashboard`]);
-  //   })
-  // }
+  saveUserInfo() {
+    this.userService.getUserInfo(this.user.username).subscribe((result) =>  {
+        this.user.username = result.username;
+        this.user.email = result.email;
+        this.user.id = result.id;
+        // sessionStorage.setItem("username", result.username);
+        // sessionStorage.setItem("email", result.email);
+        sessionStorage.setItem("id", this.user.id.toString());
+        this.router.navigate([`/dashboard`]);
+    })
+  }
 
   checkLogin()  {
-    this.authenticationService.authenticate(this.user).subscribe((result)  =>  {
+    this.authenticationService.authentication(this.user).subscribe((result)  =>  {
       this.loginStatus(result);
     },
-    // error =>  {
-    //   console.log("Authentication Error");}
+    error =>  {
+      console.log("Authentication Error");
+    }
     )
   }
 

@@ -3,4 +3,5 @@ export class Trip {
   tripName: string = "";
   startingLocation: string = "";
   endingLocation: string = "";
+  user_id: string = "0";
 }

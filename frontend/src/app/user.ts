@@ -1,3 +1,5 @@
+import { Trip } from "./trip";
+
 export class User {
   //this file is supposed to mirror the data coming in on the backend
   //the info below is the fields we have for each user
@@ -6,5 +8,6 @@ export class User {
   email: string = "";
   password: string = "";
   verifyPassword: string = "";
+  trip: Trip[];
 
 }
