@@ -30,7 +30,7 @@
       <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
         <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
       </div>
-      <div class="col-12 text-center" *ngFor="let trip of trip">
+      <div class="col-12 text-center" *ngFor="let trip of trips">
         <h3 class="fs-2" >{{trip.tripName}}</h3>
         <p>Starting Location: {{trip.startingLocation}}</p>
         <p>Ending Location: {{trip.endingLocation}}</p>
@@ -38,7 +38,6 @@
           View Trip
         </a>
       </div>
-
     </div>
   </div>
 </div>
