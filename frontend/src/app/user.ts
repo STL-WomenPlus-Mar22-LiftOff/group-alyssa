@@ -6,7 +6,7 @@ export class User {
   id: number;
   username: string;
   email: string;
-  password: string;
+  pwHash: string;
   verifyPassword: string;
   user_id: string;
 

@@ -37,12 +37,12 @@ export class CreateAccountComponent implements OnInit {
       this.routeToDashboard();
   }
 
-  onSubmit(password: String, verifyPassword: String)  {
+  onSubmit(pwHash: String, verifyPassword: String)  {
     // console.log(this.user.username);
-    if(password===verifyPassword) {
+    if(pwHash===verifyPassword) {
       this.userService.addUser(this.user).subscribe((result) => this.routeToDashboard());
   } else {
-    this.router.navigate([`/`]);
+    this.router.navigate([`/create-account`]);
   }
 }
 
