@@ -4,6 +4,7 @@ import org.launchcode.backend.Repositories.UserRepository;
 import org.launchcode.backend.exceptions.UserNotFoundException;
 import org.launchcode.backend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
 public class UserService {
     @Autowired
     private final UserRepository userRepository;
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;

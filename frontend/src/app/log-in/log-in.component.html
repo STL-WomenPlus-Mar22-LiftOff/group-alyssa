@@ -46,13 +46,13 @@
 
                 <div class="form-group">
                   <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                  <input type="password" #password="ngModel"
-                          [(ngModel)]="user.password" name="password"
+                  <input type="password" #pwHash="ngModel"
+                          [(ngModel)]="user.pwHash" name="pwHash"
                           class="form-control" placeholder="Password"
-                          id="password" [ngClass]="{ 'is-invalid': password.touched && password.invalid}"
+                          id="pwHash" [ngClass]="{ 'is-invalid': pwHash.touched && pwHash.invalid}"
                           required >
-                      <div *ngIf="password.errors && (password.invalid && password.touched)">
-                        <small class="alert-danger" *ngIf="password.errors.required">
+                      <div *ngIf="pwHash.errors && (pwHash.invalid && pwHash.touched)">
+                        <small class="alert-danger" *ngIf="pwHash.errors.required">
                           Password is required!
                         </small>
                       </div>

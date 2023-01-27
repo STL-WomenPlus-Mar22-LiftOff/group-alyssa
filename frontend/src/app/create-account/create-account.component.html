@@ -27,7 +27,7 @@
         <div  class="hero-section">
         <div class="row align-items-center justify-content-around">
           <div class="col-12 col-lg-12">
-            <form #createAccountForm="ngForm" (ngSubmit)="onSubmit(user.password, user.verifyPassword)">
+            <form #createAccountForm="ngForm" (ngSubmit)="onSubmit(user.pwHash, user.verifyPassword)">
               <fieldset>
                 <legend>Create Account</legend>
                 <div class="form-group">
@@ -65,11 +65,11 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
                   <input type="password" class="form-control"
-                        placeholder="Password" id="password"
-                        #password="ngModel" [(ngModel)]="user.password"
-                        name="password" required>
-                      <div *ngIf="password.errors">
-                        <small class="alert-danger" *ngIf="password.touched">
+                        placeholder="Password" id="pwHash"
+                        #pwHash="ngModel" [(ngModel)]="user.pwHash"
+                        name="pwHash" required>
+                      <div *ngIf="pwHash.errors">
+                        <small class="alert-danger" *ngIf="pwHash.touched">
                           Password required!
                         </small>
                       </div>
@@ -86,11 +86,11 @@
                         </small>
                       </div>
                 </div>
-                <div *ngIf="verifyPassword.touched" [hidden]="user.password===user.verifyPassword" class="alert alert-danger">Passwords must match!</div>
+                <div *ngIf="verifyPassword.touched" [hidden]="user.pwHash===user.verifyPassword" class="alert alert-danger">Passwords must match!</div>
                   <div>
                   <button type="submit" class="btn btn-light"
                           id="submit"
-                          [disabled]="!createAccountForm.valid || !emailAvailable || user.password !== user.verifyPassword">
+                          [disabled]="!createAccountForm.valid || !emailAvailable || user.pwHash !== user.verifyPassword">
                           Submit</button>
                   <button type="submit" class="btn btn-light" href="#">Cancel</button>
                   </div>

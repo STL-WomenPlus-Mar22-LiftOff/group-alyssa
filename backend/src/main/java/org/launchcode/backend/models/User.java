@@ -16,6 +16,8 @@ import java.util.Objects;
 @Entity
 public class User extends AbstractEntity {
 
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 //    @NotBlank(message = "user name required")
 //    @Size(min = 5, max = 15, message = "user name must be between 5 and 15 characters")
     @NotNull
@@ -25,31 +27,39 @@ public class User extends AbstractEntity {
     @NotNull
     private String email;
 
+    @NotNull
+    private String pwHash;
+
 //    @NotBlank(message = "password required")
 //    @Size(min = 6)
-    @NotNull
-    private String password;
+//    @NotNull
+//    private String password;
 
-    @NotNull
-    private String verifyPassword;
+//    @NotNull
+//    private String verifyPassword;
 
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Trip> trips = new ArrayList<>();
 
-//    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-
     public User(){}
 
-    public User(String username, String email, String password, String verifyPassword){
+    public User(String username, String email, String password){
         super();
         this.username = username;
         this.email = email;
-//        this.password = encoder.encode(password);
-        this.password = password;
-        this.verifyPassword = verifyPassword;
+        this.pwHash = encoder.encode(password);
     }
+
+    //original constructor
+//    public User(String username, String email, String password, String verifyPassword){
+//        super();
+//        this.username = username;
+//        this.email = email;
+////        this.password = encoder.encode(password);
+//        this.password = password;
+//        this.verifyPassword = verifyPassword;
+//    }
 
     public String getUsername() {
         return username;
@@ -67,24 +77,32 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean isMatchingPassword(String password){ return encoder.matches(password, pwHash);}
+
+    public String getPwHash() {
+        return pwHash;
     }
 
-    public void setPassword(String password) {
-//        this.password = encoder.encode(password);
-        this.password = password;
+    public void setPwHash(String pwHash) {
+        this.pwHash = pwHash;
     }
 
-    public String getVerifyPassword()   {
-        return verifyPassword;
-    }
+    //    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+////        this.password = encoder.encode(password);
+//        this.password = password;
+//    }
 
-    public void setVerifyPassword()   {
-        this.verifyPassword = verifyPassword;
-    }
-
-//    public boolean isMatchingPassword(String password){ return encoder.matches(password, this.password);}
+//    public String getVerifyPassword()   {
+//        return verifyPassword;
+//    }
+//
+//    public void setVerifyPassword()   {
+//        this.verifyPassword = verifyPassword;
+//    }
 
     public List<Trip> getTrips(){return trips;}
 
