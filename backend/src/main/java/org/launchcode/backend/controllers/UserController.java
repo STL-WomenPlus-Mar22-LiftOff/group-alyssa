@@ -1,5 +1,6 @@
-package org.launchcode.backend;
+package org.launchcode.backend.controllers;
 
+import org.launchcode.backend.Repositories.TripRepository;
 import org.launchcode.backend.Repositories.UserRepository;
 import org.launchcode.backend.models.User;
 import org.launchcode.backend.service.UserService;
@@ -10,23 +11,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/user")
-public class UserResource {
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TripRepository tripRepository;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     private final UserService userService;
 
-    public UserResource(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

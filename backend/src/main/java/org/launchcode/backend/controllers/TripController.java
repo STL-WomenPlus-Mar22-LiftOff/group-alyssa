@@ -1,26 +1,29 @@
-package org.launchcode.backend;
+package org.launchcode.backend.controllers;
 
 import org.launchcode.backend.Repositories.TripRepository;
+import org.launchcode.backend.Repositories.UserRepository;
 import org.launchcode.backend.models.Trip;
-import org.launchcode.backend.models.User;
 import org.launchcode.backend.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/trip")
-public class TripResource {
+public class TripController {
 
     @Autowired
     private TripRepository tripRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     private final TripService tripService;
 
-    public TripResource(TripService tripService){ this.tripService = tripService;}
+    public TripController(TripService tripService){ this.tripService = tripService;}
+
 
     //method to return all trips in application
     @GetMapping("")
@@ -33,7 +36,7 @@ public class TripResource {
     //add a trip
     @RequestMapping(value = "", method = RequestMethod.POST)
     public void addTrip(@RequestBody Trip trip)    {
-        Trip newTrip = new Trip(trip.getTripName(), trip.getStartingLocation(), trip.getEndingLocation(), trip.getUserId());
+        Trip newTrip = new Trip(trip.getTripName(), trip.getStartingLocation(), trip.getEndingLocation(), trip.getUser());
         tripRepository.save(newTrip);
     }
 

@@ -7,7 +7,13 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-public class Trip extends AbstractEntity implements Serializable {
+//public class Trip extends AbstractEntity implements Serializable {
+//public class Trip extends AbstractEntity {
+public class Trip {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @NotBlank(message = "Trip name required")
@@ -25,16 +31,17 @@ public class Trip extends AbstractEntity implements Serializable {
 //    private Long user_id;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
 //    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    public Trip(String startingLocation, String endingLocation) {
-        this.startingLocation = startingLocation;
-        this.endingLocation = endingLocation;
-    }
+//    public Trip(String startingLocation, String endingLocation) {
+//        this.startingLocation = startingLocation;
+//        this.endingLocation = endingLocation;
+//    }
 
     public Trip(String tripName, String startingLocation, String endingLocation, User user) {
-//        super();
+        super();
         this.user = user;
         this.tripName = tripName;
         this.startingLocation = startingLocation;
@@ -44,9 +51,11 @@ public class Trip extends AbstractEntity implements Serializable {
 
     public Trip(){}
 
-    public User getUser(){return user;}
+    public Long getId()  {return id;}
 
-    public void setUser(User user){this.user = user;}
+    public void setId() {this.id = id;}
+
+    public User getUser(){return user;}
 
     public String getTripName() {
         return tripName;

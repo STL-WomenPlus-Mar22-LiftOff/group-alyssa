@@ -12,9 +12,14 @@ import java.util.List;
 
 
 @Entity
-public class User extends AbstractEntity {
+//public class User extends AbstractEntity {
+public class User {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank(message = "Username required")
     @NotNull
@@ -31,7 +36,7 @@ public class User extends AbstractEntity {
 
     @OneToMany(mappedBy = "user")
 //    @JoinColumn(name = "user_id")
-    private final List<Trip> trips = new ArrayList<>();
+    private List<Trip> trips = new ArrayList<>();
 
     public User(String username, String email, String password){
 //        super();
@@ -40,10 +45,10 @@ public class User extends AbstractEntity {
         this.pwHash = encoder.encode(password);
     }
 
-    public User(String username, String password)   {
-        this.username = username;
-        this.pwHash = password;
-    }
+//    public User(String username, String password)   {
+//        this.username = username;
+//        this.pwHash = password;
+//    }
 
     //original constructor
 //    public User(String username, String email, String password, String verifyPassword){
@@ -56,6 +61,10 @@ public class User extends AbstractEntity {
 //    }
 
     public User(){}
+
+    public Long getId() {return id;};
+
+    public void setId(Long id) {this.id = id;}
 
     public String getUsername() {
         return username;
