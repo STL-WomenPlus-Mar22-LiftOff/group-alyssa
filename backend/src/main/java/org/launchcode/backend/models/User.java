@@ -7,10 +7,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 @Entity
@@ -18,37 +16,33 @@ public class User extends AbstractEntity {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-//    @NotBlank(message = "user name required")
-//    @Size(min = 5, max = 15, message = "user name must be between 5 and 15 characters")
+    @NotBlank(message = "Username required")
     @NotNull
+    @Size(min = 5, max = 20, message = "Invalid username. Must be between 5 and 20 characters")
     private String username;
 
-//    @Email(message = "Invalid Email try again")
+    @Email
+    @NotBlank
     @NotNull
     private String email;
 
     @NotNull
     private String pwHash;
 
-//    @NotBlank(message = "password required")
-//    @Size(min = 6)
-//    @NotNull
-//    private String password;
-
-//    @NotNull
-//    private String verifyPassword;
-
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<Trip> trips = new ArrayList<>();
-
-    public User(){}
+    @OneToMany(mappedBy = "user")
+//    @JoinColumn(name = "user_id")
+    private final List<Trip> trips = new ArrayList<>();
 
     public User(String username, String email, String password){
-        super();
+//        super();
         this.username = username;
         this.email = email;
         this.pwHash = encoder.encode(password);
+    }
+
+    public User(String username, String password)   {
+        this.username = username;
+        this.pwHash = password;
     }
 
     //original constructor
@@ -60,6 +54,8 @@ public class User extends AbstractEntity {
 //        this.password = password;
 //        this.verifyPassword = verifyPassword;
 //    }
+
+    public User(){}
 
     public String getUsername() {
         return username;
@@ -87,25 +83,6 @@ public class User extends AbstractEntity {
         this.pwHash = pwHash;
     }
 
-    //    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-////        this.password = encoder.encode(password);
-//        this.password = password;
-//    }
-
-//    public String getVerifyPassword()   {
-//        return verifyPassword;
-//    }
-//
-//    public void setVerifyPassword()   {
-//        this.verifyPassword = verifyPassword;
-//    }
-
     public List<Trip> getTrips(){return trips;}
-
-    public void setTrips(List<Trip> trips){this.trips = trips;}
 
 }
