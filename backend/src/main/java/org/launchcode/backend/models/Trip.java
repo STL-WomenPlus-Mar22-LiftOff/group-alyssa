@@ -10,35 +10,43 @@ import java.io.Serializable;
 public class Trip extends AbstractEntity implements Serializable {
 
     @NotNull
-//    @NotBlank(message = "trip name required")
+    @NotBlank(message = "Trip name required")
     private String tripName;
 
     @NotNull
-//    @NotBlank(message = "starting location coordinate required")
+    @NotBlank(message = "Starting location is required")
     private String startingLocation;
 
     @NotNull
-//    @NotBlank(message = "ending location coordinate required")
+    @NotBlank(message = "Ending location is required")
     private String endingLocation;
 
-    @Column(insertable = false, updatable = false)
-    private Long user_id;
+//    @Column(insertable = false, updatable = false)
+//    private Long user_id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    public Trip(){}
+    public Trip(String startingLocation, String endingLocation) {
+        this.startingLocation = startingLocation;
+        this.endingLocation = endingLocation;
+    }
 
-    public Trip(String tripName, String startingLocation, String endingLocation, Long user_id) {
-        super();
-//        this.user = user;
+    public Trip(String tripName, String startingLocation, String endingLocation, User user) {
+//        super();
+        this.user = user;
         this.tripName = tripName;
         this.startingLocation = startingLocation;
         this.endingLocation = endingLocation;
-        this.user_id = user_id;
+//        this.user_id = user_id;
     }
 
+    public Trip(){}
+
+    public User getUser(){return user;}
+
+    public void setUser(User user){this.user = user;}
 
     public String getTripName() {
         return tripName;
@@ -64,17 +72,12 @@ public class Trip extends AbstractEntity implements Serializable {
         this.endingLocation = endingLocation;
     }
 
-    public User getUser(){return user;}
-
-    public void setUser(User user){this.user = user;}
-
-    public Long getUserId() {
-        return user_id;
-    }
-
-    public void setUserId(Long user_id) {
-        this.user_id = user_id;
-    }
-
+//    public Long getUserId() {
+//        return user_id;
+//    }
+//
+//    public void setUserId(Long user_id) {
+//        this.user_id = user_id;
+//    }
 
 }
