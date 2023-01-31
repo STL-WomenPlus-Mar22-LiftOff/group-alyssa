@@ -18,7 +18,8 @@ import { UserService } from '../user.service';
 export class CreateTripComponent implements OnInit {
 
   trip: Trip;
-  users: User[] = [];
+  // users: User[] = [];
+  user: User;
 
   tripNamePattern = "^[a-zA-Z0-9]*$";
   startingLocationPattern = "/^[A-Za-z]+$/";
@@ -30,11 +31,21 @@ export class CreateTripComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserSessionId();
-    this.trip.user_id = this.getUserSessionId() || "";
+    let userId = parseInt(this.getUserSessionId() || "");
+    this.userService.getUserId(userId).subscribe(result => this.user = result);
   }
 
   getUserSessionId()  {
     return sessionStorage.getItem("id");
+  }
+
+  setTripIDSession()  {
+    this.tripService.getTripIdByUserId(this.getUserSessionId()).subscribe((result) => {
+      sessionStorage.setItem("tripName", result[0]);
+      sessionStorage.setItem("startingLocation", result[0]);
+      sessionStorage.setItem("endingLocation", result[0]);
+      this.goToViewTrip();
+    });
   }
 
   goToViewTrip()  {

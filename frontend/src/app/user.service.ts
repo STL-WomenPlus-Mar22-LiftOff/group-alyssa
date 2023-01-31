@@ -41,19 +41,19 @@ export class UserService {
    }
 
    public checkUsername(username: String) {
-    return this.http.get<boolean>(`${this.baseUrl}/confirm/${username}`);
+    return this.http.get<boolean>(`${this.baseUrl}/confirm/username`);
    }
 
    public checkEmail(email: String) {
-    return this.http.get<boolean>(`${this.baseUrl}/confirm/${email}`);
+    return this.http.get<boolean>(`${this.baseUrl}/confirm/email`);
    }
 
    public getUserInfo(username: String) {
       return this.http.get<any>(`${this.baseUrl}/${username}`);
    }
 
-   public getUserId(username: String) {
-    return this.http.get<number>(`${this.baseUrl}/${username}/id`);
+   public getUserId(id: number): Observable<User>{
+    return this.http.get<User>(`${this.baseUrl}/search/${id}`);
    }
 
 

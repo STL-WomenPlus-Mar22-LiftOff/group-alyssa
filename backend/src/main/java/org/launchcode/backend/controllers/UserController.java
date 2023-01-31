@@ -3,13 +3,15 @@ package org.launchcode.backend.controllers;
 import org.launchcode.backend.Repositories.TripRepository;
 import org.launchcode.backend.Repositories.UserRepository;
 import org.launchcode.backend.models.User;
-import org.launchcode.backend.service.UserService;
+//import org.launchcode.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -26,24 +28,24 @@ public class UserController {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    private final UserService userService;
+//    private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
 
     //method to return all users in application
     @GetMapping("")
     public Iterable<User> getAllUsers() {
-        Iterable<User> users = userService.findAllUsers();
+//        Iterable<User> users = userService.findAllUsers();
         return userRepository.findAll();
 //        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("search/id")
-    public Optional<User> getUser(@RequestParam User user) {
-        Optional<User> userId = userRepository.findUserById(user.getId());
-        return userId;
+    @GetMapping("search/{id}")
+    public Optional<User> findUserById(@PathVariable("id") Long userId) {
+        Optional<User> user = userRepository.findUserById(userId);
+        return user;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -62,29 +64,33 @@ public class UserController {
 
     //update user
     //Put b/c we are UPDATING, not adding
-    @PutMapping("/update")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        User updateUser = userService.updateUser(user);
-        return new ResponseEntity<>(updateUser, HttpStatus.OK);
-    }
+//    @PutMapping("/update")
+//    public ResponseEntity<User> updateUser(@RequestBody User user) {
+//        User updateUser = userService.updateUser(user);
+//        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+//    }
 
     //delete user
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
-        //only returned Http b/c user was deleted so there isn't anything to show
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
+//        userService.deleteUser(id);
+//        //only returned Http b/c user was deleted so there isn't anything to show
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     //find user by email - used for authentication/login feature
     @PostMapping("authentication")
-    public HashMap<String, String> authentication(@RequestBody User user) {
+    public HashMap<String, String> authentication(@RequestBody @Valid User user, Errors errors) {
         //custom query method created, will be added to UserRepository
         Optional<User> userData = userRepository.findByUsername(user.getUsername());
 
         HashMap<String, String> map = new HashMap<>();
 
-        if (userData.isPresent()) {
+        if (errors.hasErrors()) {
+            map.put("status", "errors");
+        }
+
+        if (userData.isPresent())   {
             User userInfo = userData.get();
 //            if (user.getPassword().equals(userInfo.getPassword()))  {
             if (encoder.matches(user.getPwHash(), userInfo.getPwHash()))    {
@@ -93,9 +99,9 @@ public class UserController {
             map.put("status", "failure");
 //                map.put("user", user.getPassword());
 //                map.put("userInfo", userInfo.getPassword());
-            }
-        }   else {
-            map.put("status", "failure");
+        }
+//        }   else {
+//            map.put("status", "failure");
         }
         return map;
     }
@@ -116,8 +122,8 @@ public class UserController {
     }
 
     //check if username and/or email already exist in the database
-    @GetMapping("/confirm/{username}")
-    public boolean checkUsername(@PathVariable("username") String username) {
+    @GetMapping("/confirm/username")
+    public boolean checkUsername(@RequestBody String username) {
         Iterable<User> allUsers = getAllUsers();
         for (User user : allUsers)  {
             if (username.equalsIgnoreCase(user.getUsername()))  {
@@ -126,8 +132,8 @@ public class UserController {
         }   return true;
     }
 
-    @GetMapping("/confirm/{email}")
-    public boolean checkEmail(@PathVariable("email") String email) {
+    @GetMapping("/confirm/email")
+    public boolean checkEmail(@RequestBody String email) {
         Iterable<User> allUsers = getAllUsers();
         for (User user : allUsers)  {
             if (email.equalsIgnoreCase(user.getEmail()))  {

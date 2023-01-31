@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -17,7 +18,7 @@ export class CreateAccountComponent implements OnInit {
   usernamePattern = "^[a-zA-Z0-9]*$";
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
-  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private userService: UserService, private loginService: AuthenticationService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.user = new User;
   }
 
@@ -40,22 +41,22 @@ export class CreateAccountComponent implements OnInit {
   onSubmit(pwHash: String, verifyPassword: String)  {
     // console.log(this.user.username);
     if(pwHash===verifyPassword) {
-      this.userService.addUser(this.user).subscribe((result) => this.routeToDashboard());
+      this.userService.addUser(this.user).subscribe((result) => this.userService.getUserInfo(this.user.username).subscribe((result) => this.saveSessionInfo(result)));
   } else {
     this.router.navigate([`/create-account`]);
   }
 }
 
-  // checkUsername(username: String) {
-  //   if (username != "") {
-  //     this.userService.checkUsername(username).subscribe(result => this.usernameAvailable = result);
-  //   }
-  // }
+  checkUsername(username: String) {
+    if (username != "") {
+      this.userService.checkUsername(username).subscribe(result => this.usernameAvailable = result);
+    }
+  }
 
-  // checkEmail(email: String) {
-  //   if (email != "") {
-  //     this.userService.checkEmail(email).subscribe(result => this.emailAvailable = result);
-  //   }
-  // }
+  checkEmail(email: String) {
+    if (email != "") {
+      this.userService.checkEmail(email).subscribe(result => this.emailAvailable = result);
+    }
+  }
 
 }
