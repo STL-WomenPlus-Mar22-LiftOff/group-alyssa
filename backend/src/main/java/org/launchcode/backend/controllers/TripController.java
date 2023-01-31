@@ -50,8 +50,8 @@ public class TripController {
     }
 
     //add a trip
-    @PostMapping("")
-//    @RequestMapping(value = "", method = RequestMethod.POST)
+//    @PostMapping("")
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void addTrip(@RequestBody Trip trip)    {
 //        Trip newTrip = new Trip(trip.getTripName(), trip.getStartingLocation(), trip.getEndingLocation(), trip.getUser());
         tripRepository.save(trip);

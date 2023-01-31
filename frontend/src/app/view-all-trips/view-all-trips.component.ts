@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 import { Trip } from '../trip';
 import { TripService } from '../trip.service';
 import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-view-all-trips',
@@ -12,9 +15,14 @@ export class ViewAllTripsComponent implements OnInit {
 
   trips: Trip[] = [];
   user: User[];
-  trip: Trip[] = [];
+  tripInfo: Trip;
+  tripValues = Object.values;
+  // trip: Trip[] = [];
 
-  constructor(private tripService: TripService) { }
+  constructor(private tripService: TripService, private userService: UserService, private authenticationService: AuthenticationService, private router: Router) {
+    this.tripInfo = new Trip;
+    this.tripValues = Object.values;
+   }
 
   ngOnInit(): void {
     this.tripService.getAllTrips().subscribe((data: Trip[]) => {

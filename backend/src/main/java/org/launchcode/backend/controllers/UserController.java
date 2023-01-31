@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @GetMapping("search/{id}")
-    public Optional<User> findUserById(@PathVariable("id") Long userId) {
-        Optional<User> user = userRepository.findUserById(userId);
+    public Optional<User> getUserById(@PathVariable("id") Long user_id) {
+        Optional<User> user = userRepository.findUserById(user_id);
         return user;
     }
 

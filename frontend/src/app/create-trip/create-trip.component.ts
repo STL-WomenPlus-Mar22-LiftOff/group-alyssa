@@ -46,7 +46,7 @@ export class CreateTripComponent implements OnInit {
     return sessionStorage.getItem("id");
   }
 
-  setTripIDSession()  {
+  setTripIdSession()  {
     this.tripService.getTripIdByUserId(this.getUserSessionId()).subscribe((result) => {
       sessionStorage.setItem("tripName", result[0]);
       sessionStorage.setItem("startingLocation", result[0]);
@@ -62,7 +62,7 @@ export class CreateTripComponent implements OnInit {
   onSubmit(trip: Trip)  {
     trip.user = this.user;
     // this.tripService.addTrip(this.trip).subscribe((result) => this.goToViewTrip());
-    this.tripService.addTrip(this.trip).subscribe((result) => { this.setTripIDSession();});
+    this.tripService.addTrip(this.trip).subscribe((result) => { this.setTripIdSession();});
   }
 
   // map = new google.maps.Map(document.getElementById('map'), {

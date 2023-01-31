@@ -25,7 +25,8 @@ public class Trip extends AbstractEntity {
 //    @Column(insertable = false, updatable = false)
 //    private Long user_id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
 //    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
