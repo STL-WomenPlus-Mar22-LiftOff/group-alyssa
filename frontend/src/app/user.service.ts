@@ -36,16 +36,16 @@ export class UserService {
    }
 
    //delete user by id; void as it's returning nothing
-   public deleteUser(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/delete/${userId}`);
+   public deleteUser(user_id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete/${user_id}`);
    }
 
    public checkUsername(username: String) {
-    return this.http.get<boolean>(`${this.baseUrl}/confirm/username`);
+    return this.http.post<boolean>(`${this.baseUrl}/confirm/username`, username);
    }
 
    public checkEmail(email: String) {
-    return this.http.get<boolean>(`${this.baseUrl}/confirm/email`);
+    return this.http.post<boolean>(`${this.baseUrl}/confirm/email`, email);
    }
 
    public getUserInfo(username: String) {

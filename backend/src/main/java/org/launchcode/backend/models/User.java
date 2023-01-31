@@ -28,9 +28,9 @@ public class User extends AbstractEntity {
 
     private String pwHash;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    @JoinColumn(name = "user_id")
-    private final List<Trip> trips = new ArrayList<>();
+    private List<Trip> trips = new ArrayList<>();
 
     public User(String username, String email, String password){
         super();
