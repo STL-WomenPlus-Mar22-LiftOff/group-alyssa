@@ -1,3 +1,4 @@
+require('dotenv').config();
 function initMap(){
     //create a Directions service object to use the route method and get a result for our request
     const directionsService = new google.maps.DirectionsService();
@@ -39,11 +40,11 @@ function calcRoute(directionsService, directionsDisplay) {
     .then((response) => {
       directionsDisplay.setDirections(response);
     })
-    .catch((e) => window.alert("Directions request failed due to " + status));
+    .catch((error) => window.alert("Directions request failed due to " + status));
 }
 
 
-/*  TRYING ALTERNATE METHOD/FUNCTION
+/*  TRYING ALTERNATE METHOD/FUNCTION*/
 //function
 function calcRoute(){
   //create request
@@ -81,7 +82,7 @@ function calcRoute(){
 
   });
 
-} */
+} 
 
 //create autocomplete options for all input
 let inputOptions = {
@@ -101,7 +102,7 @@ window.initMap = initMap;
   //Add Marker
       addMarker({coords:event.latLng});
   });
-/*
+/**/
   //Add Marker
   let marker = new google.maps.Marker({
       position:{lat:39.0997, lng:-94.5786},
@@ -115,7 +116,7 @@ window.initMap = initMap;
  marker.addListener('click', function(){
   infoWindow.open(map, marker);
  });
-*/
+
 
 //Array of Markers
 let markers = [
@@ -155,7 +156,7 @@ function addMarker(props){
      //check content
      if(props.content){
       let infoWindow = new google.maps.InfoWindow({
-        content: props.content
+        content: props.content,
    });
      }
 }
