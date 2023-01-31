@@ -20,6 +20,9 @@ export class CreateTripComponent implements OnInit {
   trip: Trip;
   // users: User[] = [];
   user: User;
+  tripName: string;
+  startingLocation: string;
+  endingLocation: string;
 
   tripNamePattern = "^[a-zA-Z0-9]*$";
   startingLocationPattern = "/^[A-Za-z]+$/";
@@ -27,12 +30,16 @@ export class CreateTripComponent implements OnInit {
 
   constructor(private tripService: TripService, private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.trip = new Trip;
+    this.user = new User;
+    this.tripName = sessionStorage.getItem("tripName");
+    this.startingLocation = sessionStorage.getItem("startingLocation");
+    this.endingLocation = sessionStorage.getItem("endingLocation");
   }
 
   ngOnInit(): void {
     this.getUserSessionId();
-    let userId = parseInt(this.getUserSessionId() || "");
-    this.userService.getUserId(userId).subscribe(result => this.user = result);
+    let user_id = parseInt(this.getUserSessionId() || "");
+    this.userService.getUserId(user_id).subscribe(result => this.user = result);
   }
 
   getUserSessionId()  {
@@ -53,7 +60,9 @@ export class CreateTripComponent implements OnInit {
   }
 
   onSubmit(trip: Trip)  {
-    this.tripService.addTrip(this.trip).subscribe((result) => this.goToViewTrip());
+    trip.user = this.user;
+    // this.tripService.addTrip(this.trip).subscribe((result) => this.goToViewTrip());
+    this.tripService.addTrip(this.trip).subscribe((result) => { this.setTripIDSession();});
   }
 
   // map = new google.maps.Map(document.getElementById('map'), {

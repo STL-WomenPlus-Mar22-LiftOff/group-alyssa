@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Trip {\n  constructor() {\n    // user_id: string;\n    this.user = {\n      id: \"\",\n      username: \"\",\n      email: \"\",\n      pwHash: \"\",\n      verifyPassword: \"\"\n    };\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
