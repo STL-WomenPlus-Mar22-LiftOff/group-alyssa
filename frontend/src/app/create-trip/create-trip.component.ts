@@ -18,6 +18,7 @@ import { UserService } from '../user.service';
 export class CreateTripComponent implements OnInit {
 
   trip: Trip;
+  trips: String[];
   // users: User[] = [];
   user: User;
   tripName: string;
@@ -31,12 +32,24 @@ export class CreateTripComponent implements OnInit {
   constructor(private tripService: TripService, private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.trip = new Trip;
     this.user = new User;
+    this.trips = [];
     this.tripName = sessionStorage.getItem("tripName");
     this.startingLocation = sessionStorage.getItem("startingLocation");
     this.endingLocation = sessionStorage.getItem("endingLocation");
   }
 
   ngOnInit(): void {
+
+    // if (this.tripName !== "")  {
+    //   this.tripService.getTripId(parseInt(this.tripName)).subscribe(response => {this.trips.push(response.tripName)})
+    // }
+    // if (this.startingLocation !== "")  {
+    //   this.tripService.getTripId(parseInt(this.startingLocation)).subscribe(response => {this.trips.push(response.startingLocation)})
+    // }
+    // if (this.endingLocation !== "")  {
+    //   this.tripService.getTripId(parseInt(this.endingLocation)).subscribe(response => {this.trips.push(response.endingLocation)})
+    // }
+
     this.getUserSessionId();
     let user_id = parseInt(this.getUserSessionId() || "");
     this.userService.getUserId(user_id).subscribe(result => this.user = result);
@@ -49,20 +62,20 @@ export class CreateTripComponent implements OnInit {
   setTripIdSession()  {
     this.tripService.getTripIdByUserId(this.getUserSessionId()).subscribe((result) => {
       sessionStorage.setItem("tripName", result[0]);
-      sessionStorage.setItem("startingLocation", result[0]);
-      sessionStorage.setItem("endingLocation", result[0]);
-      this.goToViewTrip();
+      sessionStorage.setItem("startingLocation", result[1]);
+      sessionStorage.setItem("endingLocation", result[2]);
+      this.goToViewAllTrips();
     });
   }
 
-  goToViewTrip()  {
+  goToViewAllTrips()  {
     this.router.navigate([`/view-all-trips`]);
   }
 
   onSubmit(trip: Trip)  {
     trip.user = this.user;
-    // this.tripService.addTrip(this.trip).subscribe((result) => this.goToViewTrip());
     this.tripService.addTrip(this.trip).subscribe((result) => { this.setTripIdSession();});
+    // this.tripService.addTrip(this.trip).subscribe((result) => this.goToViewAllTrips());
   }
 
   // map = new google.maps.Map(document.getElementById('map'), {

@@ -18,12 +18,12 @@ export class TripService {
     return this.http.post<Trip>(this.url, trip);
    }
 
-   public getTrip(): Observable<Trip[]>{
-    return this.http.get<Trip[]>(`${this.url}`);
-   }
+  //  public getTrip(): Observable<Trip[]>{
+  //   return this.http.get<Trip[]>(`${this.url}`);
+  //  }
 
    public getAllTrips(): Observable<Trip[]>{
-    return this.http.get<Trip[]>(this.url);
+    return this.http.get<Trip[]>(`${this.url}`);
    }
 
    public getTripIdByUserId(id: any): Observable<any> {

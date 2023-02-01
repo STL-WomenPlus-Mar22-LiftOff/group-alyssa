@@ -13,14 +13,20 @@ import { UserService } from '../user.service';
 })
 export class ViewAllTripsComponent implements OnInit {
 
-  trips: Trip[] = [];
+  trips: Trip[];
   user: User[];
   tripInfo: Trip;
+  tripName: string;
+  startingLocation: string;
+  endingLocation: string;
   tripValues = Object.values;
   // trip: Trip[] = [];
 
   constructor(private tripService: TripService, private userService: UserService, private authenticationService: AuthenticationService, private router: Router) {
     this.tripInfo = new Trip;
+    this.tripName = sessionStorage.getItem("tripName");
+    this.startingLocation = sessionStorage.getItem("startingLocation");
+    this.endingLocation = sessionStorage.getItem("endingLocation");
     this.tripValues = Object.values;
    }
 

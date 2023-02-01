@@ -7,19 +7,19 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-//public class Trip extends AbstractEntity implements Serializable {
-public class Trip extends AbstractEntity {
+public class Trip extends AbstractEntity implements Serializable {
+//public class Trip extends AbstractEntity {
 
     @NotNull
-    @NotBlank(message = "Trip name required")
+//    @NotBlank(message = "Trip name required")
     private String tripName;
 
     @NotNull
-    @NotBlank(message = "Starting location is required")
+//    @NotBlank(message = "Starting location is required")
     private String startingLocation;
 
     @NotNull
-    @NotBlank(message = "Ending location is required")
+//    @NotBlank(message = "Ending location is required")
     private String endingLocation;
 
 //    @Column(insertable = false, updatable = false)
@@ -73,12 +73,13 @@ public class Trip extends AbstractEntity {
         this.endingLocation = endingLocation;
     }
 
-//    public Long getUserId() {
-//        return user_id;
-//    }
-//
-//    public void setUserId(Long user_id) {
-//        this.user_id = user_id;
-//    }
-
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "tripName='" + tripName + '\'' +
+                ", startingLocation='" + startingLocation + '\'' +
+                ", endingLocation='" + endingLocation + '\'' +
+                ", user=" + user +
+                '}';
+    }
 }

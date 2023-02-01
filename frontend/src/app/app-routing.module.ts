@@ -11,6 +11,9 @@ import { UserComponent } from './user/user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { ViewAllTripsComponent } from './view-all-trips/view-all-trips.component';
+import { TripComponent } from './trip/trip.component';
+import { AuthGuardService } from './auth-guard-service';
+import { AuthenticationService } from './authentication.service';
 
 
 
@@ -19,11 +22,12 @@ const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent},
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'login', component: LogInComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   { path: 'user', component: UserComponent},
   { path: 'logout', component: LogoutComponent},
-  { path: 'create-trip', component: CreateTripComponent},
-  { path: 'view-all-trips', component: ViewAllTripsComponent}
+  { path: 'create-trip', component: CreateTripComponent, canActivate: [AuthGuardService]},
+  { path: 'view-all-trips', component: ViewAllTripsComponent, canActivate: [AuthGuardService]},
+  { path: 'trip', component: TripComponent}
 
 ];
 

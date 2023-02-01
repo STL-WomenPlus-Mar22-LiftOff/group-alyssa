@@ -14,6 +14,7 @@ import { UserComponent } from './user/user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TripComponent } from './trip/trip.component';
 import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard-service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthenticationService } from './authentication.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthenticationService],
+  // providers: [],
+  providers: [AuthGuardService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

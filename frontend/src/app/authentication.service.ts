@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import  {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class AuthenticationService {
     return console.log("User successfully logged out.");
   }
 
-  getUserByUsername(username: String): Observable<JSON>{
+  getUserByUsername(username: string): Observable<JSON>{
     return this.httpClient.get<JSON>(`${this.baseUrl}/${username}`);
   }
 

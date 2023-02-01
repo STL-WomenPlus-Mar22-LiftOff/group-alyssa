@@ -6,8 +6,8 @@ describe('CreateTripComponent', () => {
   let component: CreateTripComponent;
   let fixture: ComponentFixture<CreateTripComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach((async() => {
+    await TestBed.configureTestingModule({
       declarations: [ CreateTripComponent ]
     })
     .compileComponents();

@@ -23,6 +23,9 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.loginService.isUserLoggedIn())  {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   //when user creates account (and passwords match) it will route to the dashboard page

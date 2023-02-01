@@ -16,13 +16,13 @@ public class User extends AbstractEntity {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @NotBlank(message = "Username required")
+//    @NotBlank(message = "Username required")
     @NotNull
-    @Size(min = 5, max = 20, message = "Invalid username. Must be between 5 and 20 characters")
+//    @Size(min = 5, max = 20, message = "Invalid username. Must be between 5 and 20 characters")
     private String username;
 
     @Email
-    @NotBlank
+//    @NotBlank
     @NotNull
     private String email;
 
@@ -44,21 +44,7 @@ public class User extends AbstractEntity {
         this.pwHash = password;
     }
 
-    //original constructor
-//    public User(String username, String email, String password, String verifyPassword){
-//        super();
-//        this.username = username;
-//        this.email = email;
-////        this.password = encoder.encode(password);
-//        this.password = password;
-//        this.verifyPassword = verifyPassword;
-//    }
-
     public User(){}
-//
-//    public Long getId() {return id;};
-//
-//    public void setId(Long id) {this.id = id;}
 
     public String getUsername() {
         return username;
