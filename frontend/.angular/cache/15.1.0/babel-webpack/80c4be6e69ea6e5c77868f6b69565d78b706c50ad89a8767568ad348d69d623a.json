@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Trip {\n  constructor() {\n    this.id = 0;\n    this.tripName = \"\";\n    this.startingLocation = \"\";\n    this.endingLocation = \"\";\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
