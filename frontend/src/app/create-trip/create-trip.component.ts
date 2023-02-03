@@ -41,6 +41,7 @@ export class CreateTripComponent implements OnInit {
         zoom: 4
       })
       directionsRenderer.setMap(map);
+      directionsRenderer.setPanel(document.getElementById('directionsPanel'));
 
         const onChangeHandler = function () {
           calculateAndDisplayRoute(directionsService, directionsRenderer);
@@ -73,8 +74,9 @@ export class CreateTripComponent implements OnInit {
         .then((response) => {
           directionsRenderer.setDirections(response);
         })
-        .catch((e) => window.alert("Directions request failed due to " + status));
+        //.catch((e) => window.alert("Directions request failed due to " + status));
     }
+
 
 
   };
