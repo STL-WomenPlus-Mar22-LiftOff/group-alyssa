@@ -30,7 +30,7 @@ export class CreateTripComponent implements OnInit {
     this.getUserSessionId();
     this.trip.user_id = this.getUserSessionId() || "";
     let loader = new Loader({
-      apiKey: "AIzaSyD9ZpWF9QVL7RFthrS3DdPAwhN4wxjWat4",
+      apiKey: "",
       version: "weekly"
     })
     loader.load().then(() => {
@@ -38,11 +38,45 @@ export class CreateTripComponent implements OnInit {
       const directionsRenderer = new google.maps.DirectionsRenderer();
       let map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 38.63838918073673, lng: -90.25453364293442 },
-        zoom: 5
+        zoom: 4
       })
       directionsRenderer.setMap(map);
+      directionsRenderer.setPanel(document.getElementById('directionsPanel'));
+
+        const onChangeHandler = function () {
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+        };
+
+        (document.getElementById("start") as HTMLElement).addEventListener(
+          "change",
+          onChangeHandler
+        );
+        (document.getElementById("end") as HTMLElement).addEventListener(
+          "change",
+          onChangeHandler
+        );
 
     })
+    function calculateAndDisplayRoute(
+      directionsService: google.maps.DirectionsService,
+      directionsRenderer: google.maps.DirectionsRenderer
+    ) {
+      directionsService
+        .route({
+          origin: {
+            query: (document.getElementById("start") as HTMLInputElement).value,
+          },
+          destination: {
+            query: (document.getElementById("end") as HTMLInputElement).value,
+          },
+          travelMode: google.maps.TravelMode.DRIVING,
+        })
+        .then((response) => {
+          directionsRenderer.setDirections(response);
+        })
+        //.catch((e) => window.alert("Directions request failed due to " + status));
+    }
+
 
 
   };
