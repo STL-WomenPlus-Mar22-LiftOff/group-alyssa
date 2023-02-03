@@ -1,7 +1,7 @@
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="background-color: grey">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand">
         <img src="/assets/images/logo.png" height="100px" width="100px" alt="logo">
       </a>
       <div class="dropdown">
@@ -51,41 +51,41 @@
 
 
                   <div class="form-group">
-                    <b>Start: </b>
+                    <label class="form-label mt-4">Starting Location: </label>
                     <select id="start" class="form-control" #startingLocation="ngModel"
                       [(ngModel)]="trip.startingLocation" name="startingLocation" required
                       [pattern]="startingLocationPattern">
-                      <option value="chicago, il">Chicago</option>
-                      <option value="st louis, mo">St Louis</option>
-                      <option value="joplin, mo">Joplin, MO</option>
-                      <option value="oklahoma city, ok">Oklahoma City</option>
-                      <option value="amarillo, tx">Amarillo</option>
-                      <option value="gallup, nm">Gallup, NM</option>
-                      <option value="flagstaff, az">Flagstaff, AZ</option>
-                      <option value="winona, az">Winona</option>
-                      <option value="kingman, az">Kingman</option>
-                      <option value="barstow, ca">Barstow</option>
-                      <option value="san bernardino, ca">San Bernardino</option>
-                      <option value="los angeles, ca">Los Angeles</option>
+                      <option value="Chicago, IL">Chicago</option>
+                      <option value="St Louis, MO">St Louis</option>
+                      <option value="Joplin, MO">Joplin, MO</option>
+                      <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                      <option value="Amarillo, TX">Amarillo, TX</option>
+                      <option value="Gallup, NM">Gallup, NM</option>
+                      <option value="Flagstaff, AZ">Flagstaff, AZ</option>
+                      <option value="Winona, AZ">Winona, AZ</option>
+                      <option value="Kingman, AZ">Kingman, AZ</option>
+                      <option value="Barstow, CA">Barstow, CA</option>
+                      <option value="San Bernardino, CA">San Bernardino, CA</option>
+                      <option value="Los Angeles, CA">Los Angeles</option>
                     </select>
                   </div>
 
                   <div class="form-group">
-                    <b>End: </b>
+                    <label class="form-label mt-4">Ending Location: </label>
                     <select id="end" class="form-control" #endingLocation="ngModel" [(ngModel)]="trip.endingLocation"
                       name="endingLocation" required [pattern]="endingLocationPattern">
-                      <option value="chicago, il">Chicago</option>
-                      <option value="st louis, mo">St Louis</option>
-                      <option value="joplin, mo">Joplin, MO</option>
-                      <option value="oklahoma city, ok">Oklahoma City</option>
-                      <option value="amarillo, tx">Amarillo</option>
-                      <option value="gallup, nm">Gallup, NM</option>
-                      <option value="flagstaff, az">Flagstaff, AZ</option>
-                      <option value="winona, az">Winona</option>
-                      <option value="kingman, az">Kingman</option>
-                      <option value="barstow, ca">Barstow</option>
-                      <option value="san bernardino, ca">San Bernardino</option>
-                      <option value="los angeles, ca">Los Angeles</option>
+                      <option value="Chicago, IL">Chicago</option>
+                      <option value="St Louis, MO">St Louis</option>
+                      <option value="Joplin, MO">Joplin, MO</option>
+                      <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                      <option value="Amarillo, TX">Amarillo, TX</option>
+                      <option value="Gallup, NM">Gallup, NM</option>
+                      <option value="Flagstaff, AZ">Flagstaff, AZ</option>
+                      <option value="Winona, AZ">Winona, AZ</option>
+                      <option value="Kingman, AZ">Kingman, AZ</option>
+                      <option value="Barstow, CA">Barstow, CA</option>
+                      <option value="San Bernardino, CA">San Bernardino, CA</option>
+                      <option value="Los Angeles, CA">Los Angeles</option>
                     </select>
                   </div>
 
