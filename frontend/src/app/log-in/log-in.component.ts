@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../user';
-import * as bcrypt from 'bcryptjs';
+
 import { UserService } from '../user.service';
 
 @Component({
