@@ -24,9 +24,17 @@
     </div>
   </nav>
   <div class="container">
+
   <div id="tripBox" class="row g-4 py-5 row-cols-12 row-cols-lg-12">
     <!-- <div class="col d-flex align-items-start"> -->
     <div>
+      <div class="text-center" *ngIf="trips.length === 0">
+        <div class="white-space"></div>
+        <h5>Oh shucks! You don't have any trips planned...</h5>
+        <div class="text-center">
+          <a class="btn btn-lg btn-outline-dark text-center" href="create-trip">Create Trip</a>
+          </div>
+      </div>
       <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
         <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
       </div>
