@@ -1,26 +1,21 @@
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="background-color: grey">
     <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="/assets/images/logo.png" height="100px" width="100px" alt="logo">
-    </a>
-    <div class="dropdown">
-      <button
-        class="btn btn-outline-dark dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Menu
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="view-all-trips">Your Trips</a></li>
-        <li><a class="dropdown-item" href="create-trip">Create Trip</a></li>
-        <li><a class="dropdown-item" href="dashboard">Dashboard</a></li>
-        <li><a class="dropdown-item" href="logout">Logout</a></li>
-      </ul>
-    </div>
+      <a class="navbar-brand" href="#">
+        <img src="/assets/images/logo.png" height="100px" width="100px" alt="logo">
+      </a>
+      <div class="dropdown">
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Menu
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="view-all-trips">Your Trips</a></li>
+          <li><a class="dropdown-item" href="create-trip">Create Trip</a></li>
+          <li><a class="dropdown-item" href="dashboard">Dashboard</a></li>
+          <li><a class="dropdown-item" href="logout">Logout</a></li>
+        </ul>
+      </div>
     </div>
   </nav>
   <section>
@@ -30,71 +25,79 @@
         <div class="col-12 text-center">
           <h1>Create Trip</h1>
         </div>
+
+        <!--The div element for the map -->
+        <div id="floating-panel">
+
+        </div>
+        <div id="map"></div>
+
       </div>
     </div>
     <header>
       <div class="container">
-        <div  class="hero-section">
-        <div class="row align-items-center justify-content-around">
-          <div class="col-12 col-lg-12">
-            <!-- <small class="alert-danger" *ngIf="">Starting Location and Ending Location are required! Please try again.</small> -->
-            <form #createTripForm="ngForm" (ngSubmit)="onSubmit(trip)">
-              <fieldset>
-                <div class="form-group">
-                  <label class="form-label mt-4">Trip Name: </label>
-                  <input type="text" class="form-control"
-                        placeholder="Ex.: Chicago 2023" #tripName = "ngModel"
-                        [(ngModel)]="trip.tripName" name="tripName"
-                        required [pattern]="tripNamePattern">
-                      <!-- <div>
-                        <small class="text-danger" *ngIf="tripName.errors.pattern.required">
-                          Trip Name is required!
-                        </small>
-                      </div> -->
-                </div>
+        <div class="hero-section">
+          <div class="row align-items-center justify-content-around">
+            <div class="col-12 col-lg-12">
+              <!-- <small class="alert-danger" *ngIf="">Starting Location and Ending Location are required! Please try again.</small> -->
+              <form #createTripForm="ngForm" (ngSubmit)="onSubmit(trip)">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="form-label mt-4">Trip Name: </label>
+                    <input type="text" class="form-control" placeholder="Ex.: Chicago 2023" #tripName="ngModel"
+                      [(ngModel)]="trip.tripName" name="tripName" required [pattern]="tripNamePattern">
+                  </div>
 
-                <div class="form-group">
-                  <label class="form-label mt-4">Starting Location: </label>
-                  <input type="text" class="form-control"
-                        placeholder="Ex.: St. Louis" #startingLocation = "ngModel"
-                        [(ngModel)]="trip.startingLocation" name="startingLocation"
-                        required [pattern]="startingLocationPattern">
-                      <!-- <div *ngIf="startingLocation.errors">
-                        <small class="text-danger" *ngIf="startingLocation.errors.required">
-                          Starting location is required!
-                        </small>
-                        <small class="alert-danger" *ngIf="startingLocation.errors.pattern">
-                          Starting location must only contain letters and numbers!
-                        </small>
-                    </div> -->
-                </div>
 
-                <div class="form-group">
-                  <label class="form-label mt-4">Ending Location: </label>
-                  <input type="text" class="form-control"
-                      placeholder="Ex.: Chicago" #endingLocation = "ngModel"
-                      [(ngModel)]="trip.endingLocation" name="endingLocation"
-                      required [pattern]="endingLocationPattern">
-                      <!-- <div>
-                        <small class="text-danger" *ngIf="endingLocation.errors.required">
-                          Ending location is required!
-                        </small>
-                        <small class="alert-danger" *ngIf="endingLocation.errors.pattern">
-                          Ending location must only contain letters and numbers!
-                        </small>
-                      </div> -->
-                </div>
+                  <div class="form-group">
+                    <b>Start: </b>
+                    <select id="start" class="form-control" placeholder="Ex.: St. Louis" #startingLocation="ngModel"
+                      [(ngModel)]="trip.startingLocation" name="startingLocation" required
+                      [pattern]="startingLocationPattern">
+                      <option value="chicago, il">Chicago</option>
+                      <option value="st louis, mo">St Louis</option>
+                      <option value="joplin, mo">Joplin, MO</option>
+                      <option value="oklahoma city, ok">Oklahoma City</option>
+                      <option value="amarillo, tx">Amarillo</option>
+                      <option value="gallup, nm">Gallup, NM</option>
+                      <option value="flagstaff, az">Flagstaff, AZ</option>
+                      <option value="winona, az">Winona</option>
+                      <option value="kingman, az">Kingman</option>
+                      <option value="barstow, ca">Barstow</option>
+                      <option value="san bernardino, ca">San Bernardino</option>
+                      <option value="los angeles, ca">Los Angeles</option>
+                    </select>
+                  </div>
 
-                <div class="form-group">
-                  <button type="submit" id="submit" class="btn btn-outline-dark" >Create</button>
-                  <!-- <button type="submit" class="btn btn-outline-dark" href="dashboard">Cancel</button> -->
-                </div>
-                <!-- <div id="map"></div> -->
-                <!-- <div #map style="width:100%;height:400px"></div> -->
-              </fieldset>
-            </form>
+                  <div class="form-group">
+                    <b>End: </b>
+                    <select id="end" class="form-control" #endingLocation="ngModel" [(ngModel)]="trip.endingLocation"
+                      name="endingLocation" required [pattern]="endingLocationPattern">
+                      <option value="chicago, il">Chicago</option>
+                      <option value="st louis, mo">St Louis</option>
+                      <option value="joplin, mo">Joplin, MO</option>
+                      <option value="oklahoma city, ok">Oklahoma City</option>
+                      <option value="amarillo, tx">Amarillo</option>
+                      <option value="gallup, nm">Gallup, NM</option>
+                      <option value="flagstaff, az">Flagstaff, AZ</option>
+                      <option value="winona, az">Winona</option>
+                      <option value="kingman, az">Kingman</option>
+                      <option value="barstow, ca">Barstow</option>
+                      <option value="san bernardino, ca">San Bernardino</option>
+                      <option value="los angeles, ca">Los Angeles</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" id="submit" class="btn btn-outline-dark">Create</button>
+                    <!-- <button type="submit" class="btn btn-outline-dark" href="dashboard">Cancel</button> -->
+                  </div>
+                  <!-- <div id="map"></div> -->
+                  <!-- <div #map style="width:100%;height:400px"></div> -->
+                </fieldset>
+              </form>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </header>
@@ -105,4 +108,4 @@
       </footer>
     </div>
   </section>
-  </body>
+</body>
