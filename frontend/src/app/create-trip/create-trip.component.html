@@ -51,7 +51,7 @@
 
                   <div class="form-group">
                     <b>Start: </b>
-                    <select id="start" class="form-control" placeholder="Ex.: St. Louis" #startingLocation="ngModel"
+                    <select id="start" class="form-control" #startingLocation="ngModel"
                       [(ngModel)]="trip.startingLocation" name="startingLocation" required
                       [pattern]="startingLocationPattern">
                       <option value="chicago, il">Chicago</option>
@@ -92,8 +92,6 @@
                     <button type="submit" id="submit" class="btn btn-outline-dark">Create</button>
                     <!-- <button type="submit" class="btn btn-outline-dark" href="dashboard">Cancel</button> -->
                   </div>
-                  <!-- <div id="map"></div> -->
-                  <!-- <div #map style="width:100%;height:400px"></div> -->
                 </fieldset>
               </form>
             </div>
