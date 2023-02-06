@@ -11,6 +11,7 @@ import { UserComponent } from './user/user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import { ViewAllTripsComponent } from './view-all-trips/view-all-trips.component';
+import { ViewTripComponent } from './view-trip/view-trip.component';
 
 
 
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'user', component: UserComponent},
   { path: 'logout', component: LogoutComponent},
   { path: 'create-trip', component: CreateTripComponent},
-  { path: 'view-all-trips', component: ViewAllTripsComponent}
+  { path: 'view-all-trips', component: ViewAllTripsComponent},
+  { path: 'view-trip', component: ViewTripComponent}
 
 ];
 

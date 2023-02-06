@@ -1,0 +1,50 @@
+#container {
+    height: 100%;
+    display: flex;
+  }
+  
+  .full {
+    width: 100%;
+    height: 100%;
+  }
+  
+  #map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+  }
+  
+  .hero-section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 75px 50px 70px;
+    margin-left: 100px;
+    margin-right: 100px;
+    justify-content: center;
+    /* background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0,0,0,0.2) 0%); */
+  }
+
+.btn  {
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 50px;
+  }
+  
+  .white-space  {
+    margin-top: 150px;
+  }
+  
+  #tripBox  {
+    display:flex;
+    flex-wrap: wrap;
+  }
+
+  .white-space {
+    margin-top: 150px;
+  }
+
+
+  
