@@ -6,6 +6,7 @@ import { TripService } from '../trip.service';
 import { TripComponent } from '../trip/trip.component';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { environment } from 'src/environments/environment.developer'; 
 
 
 @Component({
@@ -30,7 +31,7 @@ export class CreateTripComponent implements OnInit {
     this.getUserSessionId();
     this.trip.user_id = this.getUserSessionId() || "";
     let loader = new Loader({
-      apiKey: "",
+      apiKey: environment.MY_API_KEY,
       version: "weekly"
     })
     loader.load().then(() => {
