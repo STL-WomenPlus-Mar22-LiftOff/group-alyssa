@@ -25,5 +25,13 @@ export class TripService {
    public getAllTrips(): Observable<Trip[]>{
     return this.http.get<Trip[]>(this.baseUrl);
    }
+   
+   public getTripIdByUserId(id: any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/user/${id}`);
+   }
+
+   public getTripById(id: number): Observable<Trip>{
+    return this.http.get<Trip>(`${this.baseUrl}/find/${id}`);
+   }
 
 }

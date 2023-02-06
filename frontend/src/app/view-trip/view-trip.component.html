@@ -1,0 +1,64 @@
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="background-color: grey">
+      <div class="container">
+      <a class="navbar-brand">
+        <img src="/assets/images/logo.png" height="100px" width="100px" alt="logo">
+      </a>
+      <div class="dropdown">
+        <button
+          class="btn btn-outline-dark dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Menu
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="view-all-trips">Your Trips</a></li>
+          <li><a class="dropdown-item" href="create-trip">Create Trip</a></li>
+          <li><a class="dropdown-item" href="dashboard">Dashboard</a></li>
+          <li><a class="dropdown-item" href="logout">Logout</a></li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+    <div class="container">
+  
+    <div id="tripBox" class="row g-4 py-5 row-cols-12 row-cols-lg-12">
+      <!-- <div class="col d-flex align-items-start"> -->
+      <div>
+        <div class="text-center" *ngIf="trips.length === 0">
+          <div class="white-space"></div>
+          <h5>Oh shucks! You don't have any trips planned...</h5>
+          <div class="text-center">
+            <a class="btn btn-lg btn-outline-dark text-center" href="create-trip">Create Trip</a>
+            </div>
+        </div>
+        <div class="icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+        </div>
+        <div class="col-12 text-center" *ngFor="let trip of trips">
+          <h3 class="fs-2" >{{trip.tripName}}</h3>
+          <p id="start">{{trip.startingLocation}}</p>
+          <p>To</p>
+          <p id="end">{{trip.endingLocation}}</p>
+          
+        </div>
+      </div>
+    </div>
+
+          <div id="map"></div>
+          <div id="directionsPanel"></div>
+
+  </div>
+    <section>
+      <div class="white-space"></div>
+      <div>
+        <footer class="text-center">
+          <small>Made by Big Beautiful Brains&trade;</small>
+        </footer>
+      </div>
+    </section>
+  </body>
+  
